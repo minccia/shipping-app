@@ -1,0 +1,5 @@
+---
+pt-BR:
+  buttons:
+    submit: 'Enviar'
+    create_service_order: 'Criar ordem de serviço'

@@ -1,0 +1,11 @@
+---
+pt-BR:
+  app_name: 'Paola Fretagens'
+  sender_data: 'Dados do remetente'
+  receiver_data: 'Dados do destinatário'
+  package_data: 'Dados da carga'
+  created_with_success: 'criada com sucesso'
+  not_created: 'não foi criada'
+  meters: 'metros'
+  verify_errors_below: 'Verifique os erros abaixo'
+  no_service_orders: 'Não há ordens de serviço ainda'

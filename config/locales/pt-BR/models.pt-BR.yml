@@ -1,0 +1,20 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      service_order:
+        one: 'Ordem de serviço'
+        many: 'Ordens de serviço'      
+    attributes:
+      service_order:
+        sender_full_address: 'Endereço do remetente'
+        sender_zip_code: 'CEP do remetente'
+        package_height: 'Altura do pacote'
+        package_width: 'Largura do pacote'
+        package_depth: 'Profundidade do pacote'
+        package_weight: 'Peso do pacote'
+        receiver_name: 'Nome do destinatário'
+        receiver_full_address: 'Endereço do destinatário'
+        receiver_zip_code: 'CEP do destinatário'
+        distance: 'Distância'
+        

@@ -1,0 +1,11 @@
+<article>
+  <header>
+    <h2> <%= ServiceOrder.model_name.human %> <%= @service_order.package_code %> </h2>
+  </header>
+  <main>
+    <dl>
+      <dt> <%= ServiceOrder.human_attribute_name 'sender_full_address' %>: </dt>
+      <dd> <%= @service_order.sender_full_address </dd>
+    </dl>
+  </main>
+</article>

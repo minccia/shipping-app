@@ -1,0 +1,61 @@
+<article>
+  <header>
+    <%= render partial: 'errors', locals: { model: @service_order } %>
+  </header>
+  <main>
+    <%= form_with model: @service_order do |f| %>
+      <section>
+        <h3> <%= t 'sender_data' %> </h3>
+        <p>
+          <%= f.label :sender_full_address %>
+          <%= f.text_field :sender_full_address %>
+        </p>
+        <p>
+          <%= f.label :sender_zip_code %>
+          <%= f.number_field :sender_zip_code %>
+        </p>
+      </section>
+      <section>
+        <h3> <%= t 'package_data' %> </h3>
+        <p>
+          <%= f.label :package_height %>
+          <%= f.number_field :package_height %>
+        </p>
+        <p>
+          <%= f.label :package_width %>
+          <%= f.number_field :package_width %>
+        </p>
+        <p>
+          <%= f.label :package_depth %>
+          <%= f.number_field :package_depth %>
+        </p>
+        <p>
+          <%= f.label :package_weight %>
+          <%= f.number_field :package_weight %>
+        </p>
+      </section>
+      <section>
+        <h3> <%= t 'receiver_data' %> </h3>
+        <p>
+          <%= f.label :receiver_name %>
+          <%= f.text_field :receiver_name %>
+        </p>
+        <p>
+          <%= f.label :receiver_full_address %>
+          <%= f.text_field :receiver_full_address %>
+        </p>
+        <p>
+          <%= f.label :receiver_zip_code %>
+          <%= f.number_field :receiver_zip_code %>
+        </p>
+      </section>
+      <p>
+        <h3> <%= f.label :distance %> </h3>
+        <%= f.number_field :distance %>
+      </p>
+      <p>
+        <%= f.submit t('buttons.submit') %>
+      </p>
+    <% end %>
+  </main>
+</article>

@@ -1,0 +1,32 @@
+<article>
+  <header>
+    <%= link_to t('buttons.create_service_order'), new_service_order_path %>
+  </header>
+  <main>
+    <% if @service_orders.any? %>
+      <% @service_orders.each do |so| %>
+        <h2> <%= ServiceOrder.model_name.human %> <%= "<#{so.package_code}>"%> </h2>
+        <dl>
+          <p>
+            <dt> <%= ServiceOrder.human_attribute_name 'sender_full_address' %>: </dt>
+            <dd> <%= so.sender_full_address %> </dd>
+          </p>
+          <p>
+            <dt> <%= ServiceOrder.human_attribute_name 'receiver_name' %>: </dt>
+            <dd> <%= so.receiver_name %> </dd>
+          </p>
+          <p>
+            <dt> <%= ServiceOrder.human_attribute_name 'receiver_full_address' %>: </dt>
+            <dd> <%= so.receiver_full_address %> </dd>
+          </p>
+          <p>
+            <dt> <%= ServiceOrder.human_attribute_name 'distance' %>: </dt>
+            <dd> <%= so.distance %> <%= t 'meters' %> </dd>
+          </p>
+        </dl>
+      <% end %>
+    <% else %>
+      <%= t 'no_service_orders' %>
+    <% end %>
+  </main>
+</article>

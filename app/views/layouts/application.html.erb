@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ShippingApp</title>
+    <title><%= t 'app_name' %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,6 +10,9 @@
   </head>
 
   <body>
+    <h1> <%= t 'app_name' %> </h1>
+    <nav>
+      <%= link_to t('activerecord.models.service_order.many'), service_orders_path %>
     <section>
       <%= notice %>
       <%= alert %> 
