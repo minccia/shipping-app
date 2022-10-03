@@ -4,8 +4,38 @@
   </header>
   <main>
     <dl>
-      <dt> <%= ServiceOrder.human_attribute_name 'sender_full_address' %>: </dt>
-      <dd> <%= @service_order.sender_full_address </dd>
+      <p>
+        <dt> <%= ServiceOrder.human_attribute_name 'sender_full_address' %>: </dt>
+        <dd> <%= @service_order.sender_full_address %> </dd>
+      </p>
+      <p>
+        <dt> <%= ServiceOrder.human_attribute_name 'sender_zip_code' %>: </dt>
+        <dd> <%= formatted_zip_code(@service_order.sender_zip_code)  %> </dd>
+      </p>
+      <p>
+        <dt> <%= t 'package_dimensions' %>: </dt>
+        <dd> <%= @service_order.formatted_dimensions %> <%= t 'units.centimeters' %> </dd>
+      </p>
+      <p>
+        <dt> <%= ServiceOrder.human_attribute_name 'package_weight' %>: </dt>
+        <dd> <%= @service_order.package_weight %> <%= t 'units.grams' %> </dd>
+      </p>
+      <p>
+        <dt> <%= ServiceOrder.human_attribute_name 'receiver_name' %>: </dt>
+        <dd> <%= @service_order.receiver_name %> </dd>
+      </p>
+      <p>
+        <dt> <%= ServiceOrder.human_attribute_name 'receiver_full_address' %>: </dt>
+        <dd> <%= @service_order.receiver_full_address %> </dd>
+      </p>
+      <p>
+        <dt> <%= ServiceOrder.human_attribute_name 'receiver_zip_code' %>: </dt>
+        <dd> <%= formatted_zip_code(@service_order.receiver_zip_code) %> </dd>
+      </p>
+      <p>
+        <dt> <%= ServiceOrder.human_attribute_name 'distance' %>: </dt>
+        <dd> <%= @service_order.distance %> <%= t 'units.meters' %> </dd>
+      </p>
     </dl>
   </main>
 </article>
