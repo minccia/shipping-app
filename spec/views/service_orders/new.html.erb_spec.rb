@@ -72,6 +72,13 @@ describe 'service_orders/new.html.erb' do
       expect(page).to have_content 'CEP do remetente não pode ficar em branco'
       expect(page).to have_content 'Endereço do destinatário não pode ficar em branco'
     end
+
+    it 'and return to home page' do 
+      visit new_service_order_path
+      click_on 'Início'
+
+      expect(current_path).to eq root_path
+    end
   end
 
 end
