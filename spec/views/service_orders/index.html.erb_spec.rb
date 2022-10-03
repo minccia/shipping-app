@@ -33,6 +33,13 @@ describe 'service_orders/index.html.erb' do
 
       expect(page).to have_content 'Não há ordens de serviço ainda'
     end
+
+    it 'and return to home page' do 
+      visit service_orders_path
+      click_on 'Início'
+
+      expect(current_path).to eq root_path
+    end
   end
   
 end

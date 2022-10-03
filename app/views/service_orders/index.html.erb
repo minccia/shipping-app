@@ -5,7 +5,7 @@
   <main>
     <% if @service_orders.any? %>
       <% @service_orders.each do |so| %>
-        <h2> <%= ServiceOrder.model_name.human %> <%= "<#{so.package_code}>"%> </h2>
+        <h2> <%= link_to so.name_and_code, service_order_path(so.id) %> </h2>
         <dl>
           <p>
             <dt> <%= ServiceOrder.human_attribute_name 'sender_full_address' %>: </dt>
@@ -21,7 +21,7 @@
           </p>
           <p>
             <dt> <%= ServiceOrder.human_attribute_name 'distance' %>: </dt>
-            <dd> <%= so.distance %> <%= t 'meters' %> </dd>
+            <dd> <%= so.distance %> <%= t 'units.meters' %> </dd>
           </p>
         </dl>
       <% end %>
