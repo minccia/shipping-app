@@ -26,9 +26,9 @@ class ServiceOrdersController < ApplicationController
     def new_service_order_params
       params.require(:service_order).permit(
         :sender_full_address, :sender_zip_code,
-        :package_code, :package_height, :package_width,
-        :package_depth, :package_weight, :receiver_name,
-        :receiver_full_address, :receiver_zip_code, :distance
+        :package_height, :package_width, :package_depth,
+        :package_weight, :receiver_name, :receiver_full_address,
+        :receiver_zip_code, :distance
       )
     end
 
