@@ -31,16 +31,8 @@ describe 'service_orders/show.html.erb' do
     end
 
     it 'and return to home page' do
-      so = ServiceOrder.create(
-                               sender_full_address: 'Av Das Palmas, 100',
-                               sender_zip_code: '60334120',
-                               package_height: 10, package_width: 10,
-                               package_depth: 10, package_weight: 100,
-                               receiver_name: 'Paola Dobrotto',
-                               receiver_full_address: 'Av Das Laranjeiras, 500',
-                               receiver_zip_code: '60334520',
-                               distance: 100
-                        )  
+      so = FactoryBot.create(:service_order)
+      
       visit service_order_path(so.id)
       click_on 'Início'
   

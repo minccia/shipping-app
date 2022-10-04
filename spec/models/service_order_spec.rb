@@ -1,18 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ServiceOrder, type: :model do
-  subject(:order) { 
-    ServiceOrder.new(
-                      sender_full_address: 'Av Das Palmas, 100',
-                      sender_zip_code: '60334120',
-                      package_height: 10, package_width: 10,
-                      package_depth: 10, package_weight: 100,
-                      receiver_name: 'Paola Dobrotto',
-                      receiver_full_address: 'Av Das Laranjeiras, 500',
-                      receiver_zip_code: '60334520',
-                      distance: 100
-                    )
-                }
+  subject(:order) { FactoryBot.build(:service_order) }
 
   describe '#valid?' do 
     context 'Presence validation is' do 
