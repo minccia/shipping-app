@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'home/index.html.erb' do 
-  context 'User view home_page' do 
+  context 'User view home_page' do
     it 'with success' do 
       visit root_path 
 
