@@ -17,4 +17,11 @@ pt-BR:
         receiver_full_address: 'Endereço do destinatário'
         receiver_zip_code: 'CEP do destinatário'
         distance: 'Distância'
+      user:
+        name: 'Nome'
+        email: 'Email'
+        password: 'Senha'
+        role:
+          common: 'comum'
+          admin: 'administrador'
         

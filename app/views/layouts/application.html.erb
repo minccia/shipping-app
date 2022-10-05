@@ -14,6 +14,11 @@
     <nav>
       <%= link_to t('buttons.home'), root_path %>
       <%= link_to t('activerecord.models.service_order.many'), service_orders_path %>
+      <% if user_signed_in? %>
+        <%= button_to t('buttons.sign_out'), destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to t('buttons.login'), new_user_session_path %>
+      <% end %>
     <section>
       <%= notice %>
       <%= alert %> 
