@@ -11,6 +11,7 @@ describe 'service_orders/show.html.erb' do
 
       expect(current_path).to eq new_user_session_path
     end
+    
     it 'reaching the details page' do 
       allow(SecureRandom).to receive(:alphanumeric).with(15).and_return('ABCDE12345678')
       ServiceOrder.create(
