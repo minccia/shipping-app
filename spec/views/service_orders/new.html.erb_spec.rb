@@ -25,24 +25,20 @@ describe 'service_orders/new.html.erb' do
       click_on 'Criar ordem de serviço'
 
       expect(current_path).to eq new_service_order_path 
-      within 'form' do
-        expect(page).to have_content 'Dados do remetente'
-        expect(page).to have_field 'Endereço do remetente'
-        expect(page).to have_field 'CEP do remetente'
-
-        expect(page).to have_content 'Dados da carga'
-        expect(page).to have_field 'Altura do pacote'
-        expect(page).to have_field 'Largura do pacote'
-        expect(page).to have_field 'Profundidade do pacote'
-        expect(page).to have_field 'Peso do pacote'
-
-        expect(page).to have_content 'Dados do destinatário'
-        expect(page).to have_field 'Nome do destinatário'
-        expect(page).to have_field 'Endereço do destinatário'
-        expect(page).to have_field 'CEP do destinatário'
-        expect(page).to have_field 'Distância'
-        expect(page).to have_button 'Enviar'
-      end
+      expect(page).to have_content 'Dados do remetente'
+      expect(page).to have_field 'Endereço do remetente'
+      expect(page).to have_field 'CEP do remetente'
+      expect(page).to have_content 'Dados da carga'
+      expect(page).to have_field 'Altura do pacote'
+      expect(page).to have_field 'Largura do pacote'
+      expect(page).to have_field 'Profundidade do pacote'
+      expect(page).to have_field 'Peso do pacote'
+      expect(page).to have_content 'Dados do destinatário'
+      expect(page).to have_field 'Nome do destinatário'
+      expect(page).to have_field 'Endereço do destinatário'
+      expect(page).to have_field 'CEP do destinatário'
+      expect(page).to have_field 'Distância'
+      expect(page).to have_button 'Enviar'
     end
 
     it 'with success' do 
