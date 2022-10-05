@@ -1,12 +1,11 @@
 require 'rails_helper'
 
 describe 'service_orders/new.html.erb' do 
-  let(:admin) { User.create!(name: 'Paola', email: 'paola@email.com', password: '12345678', role: 'admin') }
+  let(:admin) { FactoryBot.create(:user, role: 'admin') }
 
   context 'Admin user create a new service order' do 
     it 'if authenticated as an admin user' do 
-      common_user = User.create!(name: 'Sérgio', email: 'serginho@email.com',
-                                 password: '25892928', role: 'common')
+      common_user = FactoryBot.create(:user, role: 'common')
       
       login_as common_user, scope: :user
       visit new_service_order_path

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   context 'Creating a new user' do 
-    let(:user) { User.new(name: 'Paola', email: 'p@email.com', password: '12345678')}
+    subject(:user) { FactoryBot.build(:user) }
 
     describe '#valid?' do 
       it 'false when name is empty' do 

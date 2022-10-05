@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'service_orders/show.html.erb' do 
-  let(:user) { User.create!(name: 'Paola', email: 'paola@email.com', password: '12345678') }
+  let(:user) { FactoryBot.create(:user) }
 
   context 'User view service order details' do 
     it 'if authenticated' do 
