@@ -1,7 +1,16 @@
 require 'rails_helper'
 
 describe 'service_orders/show.html.erb' do 
+  let(:user) { User.create!(name: 'Paola', email: 'paola@email.com', password: '12345678') }
+
   context 'User view service order details' do 
+    it 'if authenticated' do 
+      so = FactoryBot.create(:service_order)
+
+      visit service_order_path(so.id)
+
+      expect(current_path).to eq new_user_session_path
+    end
     it 'reaching the details page' do 
       allow(SecureRandom).to receive(:alphanumeric).with(15).and_return('ABCDE12345678')
       ServiceOrder.create(
@@ -15,6 +24,7 @@ describe 'service_orders/show.html.erb' do
                           distance: 100
                         )  
 
+      login_as user, scope: :user                  
       visit root_path 
       click_on 'Ordens de serviço'
       click_on 'Ordem de serviço <ABCDE12345678>'
@@ -33,6 +43,7 @@ describe 'service_orders/show.html.erb' do
     it 'and return to home page' do
       so = FactoryBot.create(:service_order)
       
+      login_as user, scope: :user
       visit service_order_path(so.id)
       click_on 'Início'
   

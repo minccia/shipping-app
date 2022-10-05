@@ -14,3 +14,4 @@ pt-BR:
   not_created: 'não foi criada'
   verify_errors_below: 'Verifique os erros abaixo'
   no_service_orders: 'Não há ordens de serviço ainda'
+  no_access_granted: 'Você não possui acesso a esta página pois não é um admin'

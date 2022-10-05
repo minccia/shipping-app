@@ -1,4 +1,7 @@
 class ServiceOrdersController < ApplicationController
+  before_action :authenticate_user!, only: %i[index show]
+  before_action :require_admin, only: %i[new create]
+  
   def index 
     @service_orders = ServiceOrder.all 
   end

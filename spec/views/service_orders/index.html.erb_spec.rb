@@ -1,7 +1,15 @@
 require 'rails_helper'
 
 describe 'service_orders/index.html.erb' do 
+  let(:user) { User.create!(name: 'Paola', email: 'paola@email.com', password: '12345678') }
+
   context 'User view service orders' do 
+    it 'if authenticated' do 
+      visit service_orders_path 
+
+      expect(current_path).to eq new_user_session_path
+    end
+
     it 'with success' do 
       allow(SecureRandom).to receive(:alphanumeric).with(15).and_return('ABCDE12345678')
       ServiceOrder.create(
@@ -15,6 +23,7 @@ describe 'service_orders/index.html.erb' do
                           distance: 100
                         )
 
+      login_as user, scope: :user
       visit root_path 
 
       within 'nav' do
@@ -29,12 +38,14 @@ describe 'service_orders/index.html.erb' do
     end
 
     it 'unless there arent any service orders' do 
+      login_as user, scope: :user
       visit service_orders_path 
 
       expect(page).to have_content 'Não há ordens de serviço ainda'
     end
 
     it 'and return to home page' do 
+      login_as user, scope: :user
       visit service_orders_path
       click_on 'Início'
 

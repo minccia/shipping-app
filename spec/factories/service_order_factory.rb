@@ -1,5 +1,3 @@
-require 'faker'
-
 FactoryBot.define do 
   factory :service_order do 
     sender_full_address { "Rua #{ Faker::FunnyName.name }" }
