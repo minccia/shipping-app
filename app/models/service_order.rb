@@ -4,6 +4,7 @@ class ServiceOrder < ApplicationRecord
 
   before_validation :generate_random_package_code
   validates_presence_of VALIDATABLE_ATTRS
+  enum :status, { pending: 0, in_progress: 1, finished: 2 }
 
   def name_and_code
     "#{ ServiceOrder.model_name.human } <#{ self.package_code }>"

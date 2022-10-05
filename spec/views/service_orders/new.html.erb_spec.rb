@@ -8,14 +8,14 @@ describe 'service_orders/new.html.erb' do
       common_user = User.create!(name: 'Sérgio', email: 'serginho@email.com',
                                  password: '25892928', role: 'common')
       
-      login_as common_user 
+      login_as common_user, scope: :user
       visit new_service_order_path
       
       expect(page).to have_content 'Você não possui acesso a esta página pois não é um admin'
     end
 
     it 'from a formulary' do 
-      login_as admin
+      login_as admin, scope: :user
       visit root_path 
       
       within 'nav' do 
@@ -46,7 +46,7 @@ describe 'service_orders/new.html.erb' do
     end
 
     it 'with success' do 
-      login_as admin
+      login_as admin, scope: :user
       visit new_service_order_path
 
       fill_in 'Endereço do remetente', with: 'Av. Das Palmas, 1800'
@@ -72,7 +72,7 @@ describe 'service_orders/new.html.erb' do
     end
 
     it 'and dont fill all fields' do 
-      login_as admin
+      login_as admin, scope: :user
       visit new_service_order_path
 
       fill_in 'Endereço do remetente', with: ''
@@ -89,7 +89,7 @@ describe 'service_orders/new.html.erb' do
     end
 
     it 'and return to home page' do 
-      login_as admin
+      login_as admin, scope: :user
       visit new_service_order_path
       click_on 'Início'
 

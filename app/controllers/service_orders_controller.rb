@@ -3,7 +3,7 @@ class ServiceOrdersController < ApplicationController
   before_action :require_admin, only: %i[new create]
   
   def index 
-    @service_orders = ServiceOrder.all 
+    @service_orders = ServiceOrder.pending
   end
 
   def new 

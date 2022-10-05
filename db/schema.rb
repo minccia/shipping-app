@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_04_224232) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_05_001150) do
   create_table "service_orders", force: :cascade do |t|
     t.string "sender_full_address"
     t.string "sender_zip_code"
@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_04_224232) do
     t.integer "distance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
   end
 
   create_table "users", force: :cascade do |t|
