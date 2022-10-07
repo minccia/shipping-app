@@ -1,0 +1,31 @@
+<%= form_with model: transport_modality do |f| %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :minimum_distance %>
+    <%= f.number_field :minimum_distance %>  
+
+    <%= f.label :maximum_distance %>
+    <%= f.number_field :maximum_distance %>
+  </p>
+  <p>
+    <%= f.label :minimum_weight %>
+    <%= f.number_field :minimum_weight %>
+    
+    <%= f.label :maximum_weight %>
+    <%= f.number_field :maximum_weight %>
+  </p>
+  <p>
+    <%= f.label :fee %>
+    <%= f.number_field :fee, step: 0.50 %>
+  </p>
+  <p>
+    <%= f.label :active %>
+    <%= f.check_box :active %>
+  </p>
+  <p>
+    <%= f.submit t('buttons.submit') %>
+  </p>
+<% end %>
