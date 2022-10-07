@@ -4,7 +4,10 @@ pt-BR:
     models:
       service_order:
         one: 'Ordem de serviço'
-        many: 'Ordens de serviço'      
+        many: 'Ordens de serviço'   
+      transport_modality:
+        one: 'Modalidade de transporte'
+        many: 'Modalidades de transporte'   
     attributes:
       service_order:
         sender_full_address: 'Endereço do remetente'
@@ -24,4 +27,14 @@ pt-BR:
         role:
           common: 'comum'
           admin: 'administrador'
+      transport_modality:
+        name: 'Nome da modalidade'
+        minimum_distance: 'Distância mínima praticada'
+        maximum_distance: 'Distância máxima praticada'
+        minimum_weight: 'Peso mínimo da carga'
+        maximum_weight: 'Peso máximo da carga'
+        fee: 'Taxa fixa'
+        active: 'Ativa'
+        minimum_distance_abbr: 'Distanc. min.'
+        maximum_distance_abbr: 'Distanc. max.'
         

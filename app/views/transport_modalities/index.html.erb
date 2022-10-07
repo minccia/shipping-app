@@ -1,0 +1,71 @@
+<article>
+  <header>
+    <%= render partial: 'application/errors', locals: { model: @transport_modality } %>
+  </header>
+  <main>
+    <% if @transport_modalities.any? %>
+      <h2> <%= t 'modalities' %> </h2>
+      <% @transport_modalities.each do |trans_mod|  %>
+        <table>
+          <thead>
+            <tr>
+              <th> <%= TransportModality.human_attribute_name 'name' %> &nbsp;&nbsp; </th>
+              <th> <%= TransportModality.human_attribute_name 'minimum_distance_abbr' %> &nbsp;&nbsp; </th>
+              <th> <%= TransportModality.human_attribute_name 'maximum_distance_abbr' %> &nbsp;&nbsp; </th>
+              <th> <%= TransportModality.human_attribute_name 'fee' %> &nbsp;&nbsp; </th>
+              <th> <%= TransportModality.human_attribute_name 'active' %> </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> <%= trans_mod.name %> </td>
+              <td> <%= trans_mod.minimum_distance %>km </td>
+              <td> <%= trans_mod.maximum_distance %>km </td>
+              <td> <%= number_to_currency(trans_mod.fee) %> </td>
+              <td> <%= trans_mod.active ? t('yes') : t('no') %>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
+    <% else %>
+      <%= t 'no_transport_modalities_yet' %>
+    <% end %>
+  </main>
+  <br>
+  <hr>
+  <br>
+  <footer>
+    <h2> <%= "#{ t 'new' } #{ TransportModality.model_name.human }" %> </h2>
+    <%= form_with model: @transport_modality do |f| %>
+      <p>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </p>
+      <p>
+        <%= f.label :minimum_distance %>
+        <%= f.number_field :minimum_distance %>
+    
+        <%= f.label :maximum_distance %>
+        <%= f.number_field :maximum_distance %>
+      </p>
+      <p>
+        <%= f.label :minimum_weight %>
+        <%= f.number_field :minimum_weight %>
+
+        <%= f.label :maximum_weight %>
+        <%= f.number_field :maximum_weight %>
+      </p>
+      <p>
+        <%= f.label :fee %>
+        <%= f.number_field :fee, step: 0.50 %>
+      </p>
+      <p>
+        <%= f.label :active %>
+        <%= f.check_box :active %>
+      </p>
+      <p>
+        <%= f.submit t('buttons.submit') %>
+      </p>
+    <% end %>
+  </footer>
+</article>
