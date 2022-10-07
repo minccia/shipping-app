@@ -1,6 +1,6 @@
 <article>
   <header>
-    <%= render partial: 'errors', locals: { model: @service_order } %>
+    <%= render 'application/errors', model: @service_order %>
   </header>
   <main>
     <%= form_with model: @service_order do |f| %>
