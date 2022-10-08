@@ -8,20 +8,34 @@ RSpec.describe User, type: :model do
       it 'false when name is empty' do 
         user.name = nil 
 
-        expect(user).to be_invalid
+        user.valid? 
+        expect(user.errors.include? :name).to be_truthy
       end
 
       it 'false when email is empty' do 
         user.email = nil
 
-        expect(user).to be_invalid
+        user.valid? 
+
+        expect(user.errors.include? :email).to be_truthy
       end
 
       it 'false when password is empty' do 
         user.password = nil 
 
-        expect(user).to be_invalid
+        user.valid? 
+
+        expect(user.errors.include? :password).to be_truthy
       end
+
+      it 'false when email doesnt have @sistemadefrete.com.br domain' do 
+        user.email = 'paolitas@emailbemdiferente.com'
+
+        user.valid?
+
+        expect(user.errors.include? :email).to be_truthy
+      end
+
     end
   end
 

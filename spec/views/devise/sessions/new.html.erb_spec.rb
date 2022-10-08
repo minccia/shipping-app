@@ -4,14 +4,14 @@ describe 'devise/sessions/new.html.erb' do
   context 'User authenticates' do 
     it 'with success' do 
       User.create!(name: 'Paola Dobrotto',
-                   email: 'paola@email.com',
+                   email: 'paola@sistemadefrete.com.br',
                    password: 'password')
       
       visit root_path 
       click_on 'Fazer Login'
   
       within 'form' do
-        fill_in 'Email', with: 'paola@email.com' 
+        fill_in 'Email', with: 'paola@sistemadefrete.com.br' 
         fill_in 'Senha', with: 'password'
         click_on 'Fazer Login'
       end
@@ -24,13 +24,13 @@ describe 'devise/sessions/new.html.erb' do
   
     it 'and sign_out' do 
       User.create!(name: 'Paola Dobrotto',
-                   email: 'paola@email.com',
+                   email: 'paola@sistemadefrete.com.br',
                    password: 'password')
       
       visit new_user_session_path
   
       within 'form' do
-        fill_in 'Email', with: 'paola@email.com' 
+        fill_in 'Email', with: 'paola@sistemadefrete.com.br' 
         fill_in 'Senha', with: 'password'
         click_on 'Fazer Login'
       end

@@ -6,7 +6,7 @@ describe 'service_orders/index.html.erb' do
   context 'Common user view pending service orders' do 
     it 'if authenticated' do 
       visit service_orders_path 
-
+  
       expect(current_path).to eq new_user_session_path
     end
 

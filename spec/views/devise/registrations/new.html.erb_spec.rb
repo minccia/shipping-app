@@ -8,7 +8,7 @@ describe 'devise/registrations/new.html.erb' do
       click_on 'Registrar-se'
 
       fill_in 'Nome', with: 'Paola'
-      fill_in 'Email', with: 'paola@email.com'
+      fill_in 'Email', with: 'paola@sistemadefrete.com.br'
       fill_in 'Senha', with: '12345678'
       fill_in 'Confirme sua senha', with: '12345678'
       click_on 'Registrar-se'
