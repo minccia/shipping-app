@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :transport_modality do
-    name { "MyString" }
-    minimum_distance { 1 }
-    maximum_distance { 1 }
-    minium_weight { 1 }
-    maximum_weight { 1 }
-    fee { 1.5 }
+    name { Faker::FunnyName.name }
+    minimum_distance { rand(100..1000) }
+    maximum_distance { rand(100..1000) }
+    minimum_weight { rand(100..1000) }
+    maximum_weight { rand(100..1000) }
+    fee { rand(1..100).to_f }
   end
 end
