@@ -30,7 +30,7 @@ describe 'transport_modality/index.html.erb' do
       visit transport_modalities_path 
       
       expect(page).to have_content 'Distanc. min.'
-      expect(page).to have_content 'Não possui'
+      expect(page).to have_content 'Não possui um valor mínimo'
     end
   end
 
