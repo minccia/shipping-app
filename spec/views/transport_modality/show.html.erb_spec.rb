@@ -27,10 +27,10 @@ describe 'transport_modalities/show.html.erb' do
       click_on 'Ghetto Expresso'
 
       expect(page).to have_content 'Ghetto Expresso'
-      expect(page).to have_content 'Distância mínima praticada: 10Km'
-      expect(page).to have_content 'Distância máxima praticada: 100Km'
-      expect(page).to have_content 'Peso mínimo da carga: 100Kg'
-      expect(page).to have_content 'Peso máximo da carga: 10000Kg'
+      expect(page).to have_content 'Distância mínima praticada: 10 Km'
+      expect(page).to have_content 'Distância máxima praticada: 100 Km'
+      expect(page).to have_content 'Peso mínimo da carga: 100 Kg'
+      expect(page).to have_content 'Peso máximo da carga: 10000 Kg'
       expect(page).to have_content 'Taxa fixa: R$ 19,50'
       expect(page).to have_content 'Ativa: Sim'
     end
@@ -48,10 +48,10 @@ describe 'transport_modalities/show.html.erb' do
       click_on 'Ghetto Expresso'
 
       expect(page).to have_content 'Ghetto Expresso'
-      expect(page).to have_content 'Distância mínima praticada: Não possui um valor mínimo'
-      expect(page).to have_content 'Distância máxima praticada: 100Km'
-      expect(page).to have_content 'Peso mínimo da carga: Não possui um valor mínimo'
-      expect(page).to have_content 'Peso máximo da carga: 10000Kg'
+      expect(page).to have_content 'Distância mínima praticada: Não possui um valor mínimo em Km'
+      expect(page).to have_content 'Distância máxima praticada: 100 Km'
+      expect(page).to have_content 'Peso mínimo da carga: Não possui um valor mínimo em Kg'
+      expect(page).to have_content 'Peso máximo da carga: 10000 Kg'
       expect(page).to have_content 'Taxa fixa: R$ 19,50'
       expect(page).to have_content 'Ativa: Sim'
     end

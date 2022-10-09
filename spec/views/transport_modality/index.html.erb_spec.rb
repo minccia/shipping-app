@@ -30,7 +30,7 @@ describe 'transport_modality/index.html.erb' do
       visit transport_modalities_path 
       
       expect(page).to have_content 'Distanc. min.'
-      expect(page).to have_content 'Não possui um valor mínimo'
+      expect(page).to have_content 'Não possui um valor mínimo em Km'
     end
   end
 
@@ -63,8 +63,8 @@ describe 'transport_modality/index.html.erb' do
 
       expect(current_path).to eq transport_modalities_path
       expect(page).to have_content 'Expresso'
-      expect(page).to have_content '1Km'
-      expect(page).to have_content '30Km'
+      expect(page).to have_content '1 Km'
+      expect(page).to have_content '30 Km'
       expect(page).to have_content 'R$ 19,50'
       expect(page).to have_content 'Sim'
     end
