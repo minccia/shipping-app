@@ -19,13 +19,7 @@
           <tbody>
             <tr>
               <td> <%= link_to trans_mod.name, transport_modality_path(trans_mod.id) %> </td>
-
-              <% if !trans_mod.minimum_distance.nil? %>
-                <td> <%= trans_mod.minimum_distance %>Km </td>
-              <% else %>
-                <td> <%= t 'no_minimum' %> </td>
-              <% end %>
-              
+              <td> <%= check_if_has_minimum(trans_mod.minimum_distance) %>Km </td>  
               <td> <%= trans_mod.maximum_distance %>Km </td>
               <td> <%= number_to_currency(trans_mod.fee) %> </td>
               <td> <%= trans_mod.active ? t('yes') : t('no') %>
