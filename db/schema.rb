@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_09_174728) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_09_180114) do
   create_table "service_orders", force: :cascade do |t|
     t.string "sender_full_address"
     t.string "sender_zip_code"
@@ -59,7 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_09_174728) do
     t.string "brand_name"
     t.string "vehicle_type"
     t.string "fabrication_year"
-    t.string "maximum_capacity"
+    t.integer "maximum_capacity"
     t.integer "transport_modality_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
