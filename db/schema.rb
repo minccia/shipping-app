@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_06_231351) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_09_174728) do
   create_table "service_orders", force: :cascade do |t|
     t.string "sender_full_address"
     t.string "sender_zip_code"
@@ -52,6 +52,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_06_231351) do
     t.integer "role", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "vehicles", force: :cascade do |t|
+    t.string "license_plate"
+    t.string "brand_name"
+    t.string "vehicle_type"
+    t.string "fabrication_year"
+    t.string "maximum_capacity"
+    t.integer "transport_modality_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "status", default: 0
+    t.index ["transport_modality_id"], name: "index_vehicles_on_transport_modality_id"
   end
 
 end

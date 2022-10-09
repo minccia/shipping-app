@@ -14,7 +14,8 @@
     <nav>
       <%= link_to t('buttons.home'), root_path %>
       <%= link_to t('activerecord.models.service_order.many'), service_orders_path %>
-
+      <%= link_to t('activerecord.models.vehicle.many'), vehicles_path %>
+      
       <% if user_signed_in? %>
         <% if current_user.admin? %>
           <%= link_to t('activerecord.models.transport_modality.many'), transport_modalities_path %>

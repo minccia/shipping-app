@@ -1,0 +1,7 @@
+<article>
+  <header>
+    <% if current_user.admin? %>
+      <%= link_to "#{ t 'new_masculine'} #{ Vehicle.model_name.human }", new_vehicle_path %>
+    <% end %>
+  </header>
+</article>

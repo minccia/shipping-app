@@ -11,6 +11,7 @@ pt-BR:
   no_minimum: 'Não possui um valor mínimo em'
   app_name: 'Paola Fretagens'
   new: 'Nova'
+  new_masculine: 'Novo'
   modalities: 'Modalidades'
   sender_data: 'Dados do remetente'
   receiver_data: 'Dados do destinatário'

@@ -1,0 +1,5 @@
+---
+pt-BR:
+  messages:
+    vehicle_created_with_success: 'Veículo criado com sucesso'
+    vehicle_not_created: 'Veículo não foi criado'
