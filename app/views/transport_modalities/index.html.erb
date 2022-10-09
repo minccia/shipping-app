@@ -19,7 +19,11 @@
           <tbody>
             <tr>
               <td> <%= trans_mod.name %> </td>
-              <td> <%= trans_mod.minimum_distance %>km </td>
+              <% if !trans_mod.minimum_distance.nil? %>
+                <td> <%= trans_mod.minimum_distance %>km </td>
+              <% else %>
+                <td> <%= t 'dont_have' %> </td>
+              <% end %>
               <td> <%= trans_mod.maximum_distance %>km </td>
               <td> <%= number_to_currency(trans_mod.fee) %> </td>
               <td> <%= trans_mod.active ? t('yes') : t('no') %>

@@ -22,6 +22,16 @@ describe 'transport_modality/index.html.erb' do
   
       expect(page).to have_content 'Não há modalidades de transporte ainda'
     end
+
+    it 'and there are not some rows' do 
+      FactoryBot.create(:transport_modality, minimum_distance: nil)
+
+      login_as admin, scope: :user
+      visit transport_modalities_path 
+      
+      expect(page).to have_content 'Distanc. min.'
+      expect(page).to have_content 'Não possui'
+    end
   end
 
   context 'Admin user register new transport modality' do 

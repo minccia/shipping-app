@@ -8,6 +8,7 @@ pt-BR:
 
   "yes" : 'Sim'
   "no" : 'Não'
+  dont_have: 'Não possui'
   app_name: 'Paola Fretagens'
   new: 'Nova'
   modalities: 'Modalidades'
