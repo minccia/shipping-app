@@ -1,6 +1,6 @@
 class TransportModalitiesController < ApplicationController
   before_action :fetch_transport_modalities, only: %i[index create]
-  before_action :require_admin, only: %i[index]
+  before_action :require_admin, only: %i[index show]
 
   def index 
     @transport_modality = TransportModality.new
@@ -14,6 +14,10 @@ class TransportModalitiesController < ApplicationController
     end
     flash.now.notice =  t 'modality_not_created'
     render :index, status: :unprocessable_entity 
+  end
+
+  def show
+    @transport_modality = TransportModality.find params[:id]
   end
 
   private 

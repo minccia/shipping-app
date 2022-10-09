@@ -1,0 +1,34 @@
+<article>
+  <header>
+    <h3> <%= @transport_modality.name %> </h3>
+  </header>
+
+  <main>
+    <dl>
+      <p>
+        <dt> <%= TransportModality.human_attribute_name 'minimum_distance' %>: </dt>
+        <dd> <%= check_if_has_minimum(@transport_modality.minimum_distance) %>Km </dd>
+      </p>
+      <p>
+        <dt> <%= TransportModality.human_attribute_name 'maximum_distance' %>: </dt>
+        <dd> <%= @transport_modality.maximum_distance %>Km </dd>
+      </p>
+      <p>
+        <dt> <%= TransportModality.human_attribute_name 'minimum_weight' %>: </dt>
+        <dd> <%= check_if_has_minimum(@transport_modality.minimum_weight) %>Kg </dd>
+      </p>
+      <p>
+        <dt> <%= TransportModality.human_attribute_name 'maximum_weight' %>: </dt>
+        <dd> <%= @transport_modality.maximum_weight %>Kg </dd>
+      </p>
+      <p>
+        <dt> <%= TransportModality.human_attribute_name 'fee' %>: </dt>
+        <dd> <%= number_to_currency(@transport_modality.fee) %> </dd>
+      </p>
+      <p>
+        <dt> <%= TransportModality.human_attribute_name 'active' %>: </dt>
+        <dd> <%= @transport_modality.active ? t('yes') : t('no') %> </dd>
+      </p>
+    </dl>
+  </main>
+</article>
