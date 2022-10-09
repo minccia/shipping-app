@@ -4,6 +4,7 @@ pt-BR:
     submit: 'Enviar'
     create_service_order: 'Criar ordem de serviço'
     home: 'Início'
+    edit: 'Editar'
     login: 'Fazer Login'
     sign_up: 'Registrar-se'
     forgot_password: 'Esqueceu sua senha?'

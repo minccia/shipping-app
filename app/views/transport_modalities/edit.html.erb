@@ -1,0 +1,9 @@
+<article>
+  <header>
+    <h2> <%= "#{ t 'buttons.edit' } #{ TransportModality.model_name.human }" %> </h2>
+    <%= render 'application/errors', model: @transport_modality %>
+  </header>
+  <main>
+    <%= render 'form', transport_modality: @transport_modality %>
+  </main>
+</article>

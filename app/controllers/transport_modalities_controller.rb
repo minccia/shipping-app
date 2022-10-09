@@ -1,6 +1,7 @@
 class TransportModalitiesController < ApplicationController
+  before_action :require_admin
   before_action :fetch_transport_modalities, only: %i[index create]
-  before_action :require_admin, only: %i[index show]
+  before_action :locate_trans_modal_by_id, only: %i[show edit update]
 
   def index 
     @transport_modality = TransportModality.new
@@ -16,11 +17,24 @@ class TransportModalitiesController < ApplicationController
     render :index, status: :unprocessable_entity 
   end
 
-  def show
-    @transport_modality = TransportModality.find params[:id]
+  def show; end
+
+  def edit; end
+
+  def update 
+    if @transport_modality.update new_trans_modal_params
+      flash.notice = t 'modality_updated_with_success'
+      return redirect_to transport_modalities_url 
+    end
+    flash.now.notice = t 'modality_not_updated'
+    render :edit, status: :unprocessable_entity
   end
 
   private 
+
+    def locate_trans_modal_by_id 
+      @transport_modality = TransportModality.find params[:id]
+    end
 
     def fetch_transport_modalities 
       @transport_modalities = TransportModality.all 

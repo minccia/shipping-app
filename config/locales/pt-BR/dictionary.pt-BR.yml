@@ -26,3 +26,5 @@ pt-BR:
   minimum_of: 'Mínimo de'
   characters: 'caracteres'
   no_transport_modalities_yet: 'Não há modalidades de transporte ainda'
+  modality_updated_with_success: 'Modalidade atualizada com sucesso'
+  modality_not_updated: 'Modalidade não atualizada'
