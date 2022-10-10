@@ -11,9 +11,7 @@ class ServiceOrder < ApplicationRecord
   end
 
   def formatted_dimensions
-    "#{ self.package_height } x
-     #{ self.package_width } x
-     #{ self.package_depth }"
+    "#{ self.package_height } x #{ self.package_width } x #{ self.package_depth }"
   end
 
   private 

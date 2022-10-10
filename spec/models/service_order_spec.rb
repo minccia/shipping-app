@@ -87,4 +87,16 @@ RSpec.describe ServiceOrder, type: :model do
     end
   end
 
+  describe '#formatted_dimensions' do 
+    context 'Dimesions are prettily formatted' do 
+      it 'correctly' do 
+        order.package_height = 30
+        order.package_width = 20
+        order.package_depth = 10 
+
+        expect(order.formatted_dimensions).to eq '30 x 20 x 10'
+      end
+    end
+  end
+
 end
