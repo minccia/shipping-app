@@ -30,7 +30,9 @@
   <footer>
     <% if current_user.admin? %>
       <%= link_to t('buttons.edit'), edit_vehicle_path(@vehicle.id) %>
-      <%= link_to t('buttons.send_to_maintenance'), send_to_maintenance_vehicle_path(@vehicle.id) %>
+      <% if !@vehicle.on_maintenance? %>
+        <%= link_to t('buttons.send_to_maintenance'), send_to_maintenance_vehicle_path(@vehicle.id) %>
+      <% end %>
     <% end %>
   </footer>
 </article>

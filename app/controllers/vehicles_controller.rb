@@ -35,6 +35,10 @@ class VehiclesController < ApplicationController
   def show; end
 
   def send_to_maintenance 
+    if @vehicle.on_maintenance?
+      flash.notice = t 'messages.vehicle_already_in_maintenance', license_plate: @vehicle.license_plate
+      return redirect_to vehicles_url
+    end
     @vehicle.on_maintenance!
     flash.notice = t 'messages.sent_to_maintenance', license_plate: @vehicle.license_plate
     return redirect_to vehicles_url
