@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :service_orders, only: %i[index new create show]
   resources :transport_modalities, only: %i[index create show edit update]
 
-  resources :vehicles, only: %i[index new create] do 
+  resources :vehicles, only: %i[index new create edit update show] do 
     get 'search', on: :collection
   end
 end

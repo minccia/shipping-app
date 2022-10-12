@@ -8,10 +8,11 @@
     <% unless !@found_vehicles %>
       <%= found_vehicles_message(@found_vehicles) %>
       <% @found_vehicles.each do |vehicle| %>
+        <h3> <%= vehicle.vehicle_type %> <%= vehicle.brand_name %> </h3>
         <dl>
           <p>
             <dt> <%= Vehicle.human_attribute_name 'license_plate' %>: </dt>
-            <dd> <%= vehicle.license_plate %>
+            <dd> <%= link_to vehicle.license_plate, vehicle_path(vehicle.id) %>
           </p>
           <p>
             <dt> <%= Vehicle.human_attribute_name 'transport_modality' %>: </dt>

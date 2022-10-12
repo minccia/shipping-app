@@ -1,0 +1,27 @@
+<main>
+  <header>
+    <h2> <%= @vehicle.vehicle_type %> <%= @vehicle.brand_name %> </h2>
+  </header>
+  <dl>
+    <p>
+      <dt> <%= Vehicle.human_attribute_name 'license_plate' %>: </dt>
+      <dd> <%= @vehicle.license_plate %> </dd>
+    </p>
+    <p>
+      <dt> <%= Vehicle.human_attribute_name 'fabrication_year' %>: </dt>
+      <dd> <%= @vehicle.fabrication_year %> </dd>
+    </p>
+    <p>
+      <dt> <%= Vehicle.human_attribute_name 'maximum_capacity' %>: </dt>
+      <dd> <%= @vehicle.maximum_capacity %>Kgs </dd>
+    </p>
+    <p>
+      <dt> <%= t 'activerecord.attributes.vehicle.status.one' %>: </dt>
+      <dd> <%= t @vehicle.status, scope: [:activerecord, :attributes, :vehicle, :status] %> </dd>
+    </p>
+    <p>
+      <dt> <%= Vehicle.human_attribute_name 'transport_modality' %>: </dt>
+      <dd> <%= link_to @vehicle.transport_modality.name, transport_modality_path(@vehicle.transport_modality_id) %> </dd>
+    </p>
+  </dl>
+</main>

@@ -5,7 +5,8 @@ describe 'vehicles/search.html.erb' do
 
   context 'User search vehicles' do 
     it 'finding one vehicle' do 
-      vehicle = FactoryBot.create(:vehicle, license_plate: 'ABC1D23')
+      vehicle = FactoryBot.create(:vehicle, license_plate: 'ABC1D23',
+                                  brand_name: 'Fiat', vehicle_type: 'Carreta')
 
       login_as user, scope: :user
       visit vehicles_path
@@ -15,14 +16,18 @@ describe 'vehicles/search.html.erb' do
       expect(current_path).to eq search_vehicles_path
       expect(page).to have_content 'Resultados da busca por: ABC1D23'
       expect(page).to have_content '1 Veículo encontrado'
+      expect(page).to have_content 'Carreta Fiat'
       expect(page).to have_content 'Placa do veículo: ABC1D23'
       expect(page).to have_content "Modalidade de transporte: #{vehicle.transport_modality.name}"
       expect(page).to have_content 'Status: Disponível'
     end
 
     it 'finding many vehicles' do 
-      first_vehicle = FactoryBot.create(:vehicle, license_plate: 'ABC1D23')
-      second_vehicle = FactoryBot.create(:vehicle, license_plate: 'ABC7Z99', status: :on_maintenance)
+      first_vehicle = FactoryBot.create(:vehicle, license_plate: 'ABC1D23',
+                                        brand_name: 'Chevrolet', vehicle_type: 'Motinha')
+
+      second_vehicle = FactoryBot.create(:vehicle, license_plate: 'ABC7Z99', status: :on_maintenance,
+                                         brand_name: 'Lamborghini', vehicle_type: 'Fusca')
       third_vehicle = FactoryBot.create(:vehicle, license_plate: 'ZIMBABUÉ', status: :in_operation)
 
       login_as user, scope: :user
@@ -33,9 +38,11 @@ describe 'vehicles/search.html.erb' do
       expect(current_path).to eq search_vehicles_path
       expect(page).to have_content 'Resultados da busca por: ABC'
       expect(page).to have_content '2 Veículos encontrados'
+      expect(page).to have_content 'Motinha Chevrolet'
       expect(page).to have_content 'Placa do veículo: ABC1D23'
       expect(page).to have_content "Modalidade de transporte: #{first_vehicle.transport_modality.name}"
       expect(page).to have_content 'Status: Disponível'
+      expect(page).to have_content 'Fusca Lamborghini'
       expect(page).to have_content 'Placa do veículo: ABC7Z99'
       expect(page).to have_content "Modalidade de transporte: #{second_vehicle.transport_modality.name}"
       expect(page).to have_content 'Status: Em manutenção'
