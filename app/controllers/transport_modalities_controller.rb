@@ -1,5 +1,6 @@
 class TransportModalitiesController < ApplicationController
-  before_action :require_admin
+  before_action :authenticate_user!, only: %i[index show]
+  before_action :require_admin, only: %i[new create edit update]
   before_action :fetch_transport_modalities, only: %i[index create]
   before_action :locate_trans_modal_by_id, only: %i[show edit update]
 

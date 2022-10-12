@@ -1,11 +1,17 @@
 require 'rails_helper'
 
 describe 'transport_modalities/edit.html.erb' do 
-  let(:admin) { FactoryBot.create(:user, role: 'admin') }
+  let(:admin) { FactoryBot.create(:user, role: :admin) }
 
   context 'Admin user edit existing transport modality' do 
     it 'if authenticated' do 
+      common_user = FactoryBot.create(:user, role: :common)
       trans_mod = FactoryBot.create(:transport_modality)
+
+      login_as common_user, scope: :user
+      visit transport_modalities_path 
+
+      expect(page).not_to have_content 'Editar'
 
       visit edit_transport_modality_path(trans_mod.id)
 

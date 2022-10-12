@@ -1,15 +1,14 @@
 require 'rails_helper'
 
 describe 'transport_modalities/show.html.erb' do 
-  let(:admin) { FactoryBot.create(:user, role: 'admin') }
+  let(:user) { FactoryBot.create(:user) }
 
   context 'User view transport modality details' do 
     it 'if authenticated' do 
       trans_mod = FactoryBot.create(:transport_modality)
 
       visit transport_modality_path(trans_mod.id)
-      expect(current_path).to eq root_path 
-      expect(page).to have_content 'Você não possui acesso a esta página pois não é um admin'
+      expect(current_path).to eq new_user_session_path
     end
 
     it 'with success' do 
@@ -22,7 +21,7 @@ describe 'transport_modalities/show.html.erb' do
                               fee: 19.5
                           )
 
-      login_as admin, scope: :user 
+      login_as user, scope: :user 
       visit transport_modalities_path 
       click_on 'Ghetto Expresso'
 
@@ -43,7 +42,7 @@ describe 'transport_modalities/show.html.erb' do
                               fee: 19.5
                           )
 
-      login_as admin, scope: :user 
+      login_as user, scope: :user 
       visit transport_modalities_path 
       click_on 'Ghetto Expresso'
 

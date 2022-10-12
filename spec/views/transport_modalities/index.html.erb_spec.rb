@@ -1,23 +1,22 @@
 require 'rails_helper'
 
 describe 'transport_modality/index.html.erb' do 
-  let(:admin) { FactoryBot.create(:user, role: 'admin') }
 
   context 'User view transport modalities' do 
-    it 'if authenticated as an admin' do 
-      common_user = FactoryBot.create(:user, role: 'common')
-      
-      login_as common_user, scope: :user
+    let(:user) { FactoryBot.create(:user) }
+
+    it 'if authenticated' do 
       visit root_path
-      within 'nav' do 
-        expect(page).not_to have_content 'Modalidades de transporte'
-      end
+
+      expect(page).not_to have_content 'Modalidades de transporte'
+
       visit transport_modalities_path
-      expect(page).to have_content 'Você não possui acesso a esta página pois não é um admin'
+
+      expect(current_path).to eq new_user_session_path
     end
 
     it 'and there are no modalities' do 
-      login_as admin, scope: :user 
+      login_as user, scope: :user 
       visit transport_modalities_path
   
       expect(page).to have_content 'Não há modalidades de transporte ainda'
@@ -26,15 +25,31 @@ describe 'transport_modality/index.html.erb' do
     it 'and there are not some rows' do 
       FactoryBot.create(:transport_modality, minimum_distance: nil)
 
-      login_as admin, scope: :user
+      login_as user, scope: :user
       visit transport_modalities_path 
       
       expect(page).to have_content 'Distanc. min.'
       expect(page).to have_content 'Não possui um valor mínimo em Km'
     end
+
+    it 'and dont see a formulary to create new transport modality' do 
+      login_as user, scope: :user
+      visit transport_modalities_path 
+
+      expect(page).not_to have_content 'Nova Modalidade de transporte'
+      expect(page).not_to have_field 'Nome da modalidade'
+      expect(page).not_to have_field 'Distância mínima praticada'
+      expect(page).not_to have_field 'Distância máxima praticada'
+      expect(page).not_to have_field 'Peso mínimo da carga'
+      expect(page).not_to have_field 'Peso máximo da carga'
+      expect(page).not_to have_field 'Taxa fixa'
+      expect(page).not_to have_field 'Ativa'
+    end
   end
 
   context 'Admin user register new transport modality' do 
+    let(:admin) { FactoryBot.create(:user, role: :admin) }
+
     it 'from a formulary' do 
       login_as admin, scope: :user
       visit root_path 

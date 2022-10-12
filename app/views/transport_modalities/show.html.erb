@@ -31,7 +31,9 @@
           <dd> <%= @transport_modality.active ? t('yes') : t('no') %> </dd>
         </p>
       </dl>
-      <%= link_to t('buttons.edit'), edit_transport_modality_path %>
+      <% if current_user.admin? %>
+        <%= link_to t('buttons.edit'), edit_transport_modality_path %>
+      <% end %>
     </section>
     <section>
       <h3> <%= WeightPriceTable.model_name.human %> </h3>
@@ -40,7 +42,7 @@
             <% @transport_modality.weight_price_table.table_entries.each do |entry| %>
             <tr>
               <td> <%= t 'from' %> <%= entry.first_interval %>Kgs <%= t 'to' %> <%= entry.second_interval %>Kgs </td> 
-              <td> <strong> <%= number_to_currency(entry.price) %> </strong> </td>
+              <td> <strong> <%= number_to_currency(entry.price) %> </strong> Por Km </td>
             </tr>
             <% end %>
           </tbody>
