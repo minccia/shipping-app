@@ -11,6 +11,8 @@ pt-BR:
       vehicle:
         one: 'Veículo'
         other: 'Veículos'
+      weight_price_table:
+        one: 'Tabela de Preços por Peso'
     attributes:
       service_order:
         sender_full_address: 'Endereço do remetente'

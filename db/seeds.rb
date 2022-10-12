@@ -4,6 +4,9 @@ User.create!(name: 'common', email: 'common@sistemadefrete.com.br', password: '1
 User.create!(name: 'admin', email: 'admin@sistemadefrete.com.br', password: '1234567', role: :admin)
 
 TransportModality.destroy_all
+DistancePriceTable.destroy_all 
+WeightPriceTable.destroy_all
+TableEntry.destroy_all
 
 trans_mod = TransportModality.create!(name: 'Expresso', 
                                       maximum_distance: 100,

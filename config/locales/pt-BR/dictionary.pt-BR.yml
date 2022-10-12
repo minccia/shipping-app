@@ -11,6 +11,8 @@ pt-BR:
 
   "yes" : 'Sim'
   "no" : 'Não'
+  from: 'De'
+  to: 'à'
   no_minimum: 'Não possui um valor mínimo em'
   app_name: 'Paola Fretagens'
   new: 'Nova'
