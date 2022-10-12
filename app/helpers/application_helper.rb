@@ -9,10 +9,8 @@ module ApplicationHelper
   end
 
   def found_vehicles_message(collection)
-    if collection.length == 1 
-      return "1 #{ Vehicle.model_name.human} #{ t 'found.singular' }"
-    end
-    return "#{ collection.count } #{ t 'activerecord.models.vehicle.many'} #{ t 'found.plural' }"
+    vehicles = Vehicle.model_name.human(count: collection.count)
+    "#{ collection.count } #{ vehicles } " + (collection.count == 1 ? t('found.singular') : t('found.plural'))
   end
 
 end

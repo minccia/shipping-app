@@ -10,7 +10,7 @@ pt-BR:
         many: 'Modalidades de transporte'   
       vehicle:
         one: 'Veículo'
-        many: 'Veículos'
+        other: 'Veículos'
     attributes:
       service_order:
         sender_full_address: 'Endereço do remetente'
