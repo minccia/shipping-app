@@ -54,6 +54,7 @@ class VehiclesController < ApplicationController
     flash.notice = t 'messages.vehicle_not_updated'
     render :edit, status: :unprocessable_entity
   end
+  
   private 
 
     def fetch_vehicle
