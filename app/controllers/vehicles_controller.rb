@@ -20,7 +20,11 @@ class VehiclesController < ApplicationController
 
   def search 
     @searched_term = params[:query]
-    @found_vehicles = Vehicle.where("license_plate LIKE ?", "%#{@searched_term}%")
+    @found_vehicles = Vehicle.joins(:transport_modality).where(
+      transport_modality: {name: "#{@searched_term}"}).or(
+      Vehicle.where("license_plate LIKE ?", "%#{@searched_term}%")
+    )
+    
     if @found_vehicles.empty? 
       flash.notice = t 'messages.no_vehicles_found'
       return redirect_to vehicles_url
