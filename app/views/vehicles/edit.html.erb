@@ -1,4 +1,7 @@
 <article>
+  <header>
+    <%= render 'application/errors', model: @vehicle %>
+  </header>
   <main>
     <%= render 'vehicle_form', vehicle: @vehicle %>
   </main>

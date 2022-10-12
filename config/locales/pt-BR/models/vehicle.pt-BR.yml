@@ -9,3 +9,5 @@ pt-BR:
     no_vehicles_found: 'Nenhum Veículo encontrado'
     sent_to_maintenance: 'Veículo %{license_plate} enviado para manutenção com sucesso'
     vehicle_already_in_maintenance: 'Veículo %{license_plate} já está em manutenção'
+    vehicle_updated_with_success: 'Veículo atualizado com sucesso'
+    vehicle_not_updated: 'Veículo não atualizado'

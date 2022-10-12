@@ -1,7 +1,7 @@
 class VehiclesController < ApplicationController
   before_action :authenticate_user!, only: %i[index search]
   before_action :require_admin, only: %i[new edit update send_to_maintenance]
-  before_action :fetch_vehicle, only: %i[show edit send_to_maintenance]
+  before_action :fetch_vehicle, only: %i[show edit update send_to_maintenance]
 
   def index; end 
 
@@ -46,6 +46,14 @@ class VehiclesController < ApplicationController
 
   def edit; end
 
+  def update 
+    if @vehicle.update new_vehicle_params
+      flash.notice = t 'messages.vehicle_updated_with_success'
+      return redirect_to vehicle_url(@vehicle)
+    end
+    flash.notice = t 'messages.vehicle_not_updated'
+    render :edit, status: :unprocessable_entity
+  end
   private 
 
     def fetch_vehicle
