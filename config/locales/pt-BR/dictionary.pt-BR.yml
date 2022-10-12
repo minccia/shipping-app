@@ -6,8 +6,8 @@ pt-BR:
     grams: 'gramas'
     km: 'quilômetros'
   found:
-    singular: 'encontrado'
-    plural: 'encontrados'
+    one: 'encontrado'
+    other: 'encontrados'
 
   "yes" : 'Sim'
   "no" : 'Não'

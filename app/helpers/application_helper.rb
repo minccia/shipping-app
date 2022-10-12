@@ -10,7 +10,7 @@ module ApplicationHelper
 
   def found_vehicles_message(collection)
     vehicles = Vehicle.model_name.human(count: collection.count)
-    "#{ collection.count } #{ vehicles } " + (collection.count == 1 ? t('found.singular') : t('found.plural'))
+    "#{ collection.count } #{ vehicles } #{ t(:found, count: collection.count) }"
   end
 
 end
