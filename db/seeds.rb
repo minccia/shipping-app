@@ -18,3 +18,10 @@ Vehicle.create!(license_plate: 'ABC1D23',
                 fabrication_year: '2010',
                 maximum_capacity: '500',
                 transport_modality: trans_mod)
+
+Vehicle.create!(license_plate: 'ZDN4B52',
+                brand_name: 'Chevrolet',
+                vehicle_type: 'Carreta',
+                fabrication_year: '2005',
+                maximum_capacity: '800',
+                transport_modality: trans_mod)

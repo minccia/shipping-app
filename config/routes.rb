@@ -6,5 +6,6 @@ Rails.application.routes.draw do
 
   resources :vehicles, only: %i[index new create edit update show] do 
     get 'search', on: :collection
+    get 'send_to_maintenance', on: :member
   end
 end
