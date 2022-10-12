@@ -46,7 +46,11 @@ pt-BR:
         vehicle_type: 'Modelo'
         fabrication_year: 'Ano de fabricação'
         maximum_capacity: 'Capacidade máxima (De Peso)'
-        status: 'Status'
+        status:
+          one: 'Status'
+          available: 'Disponível'
+          in_operation: 'Em trânsito'
+          on_maintenance: 'Em manutenção' 
         transport_modality: 'Modalidade de transporte'
         transport_modality_id: 'Modalidade de transporte'
 

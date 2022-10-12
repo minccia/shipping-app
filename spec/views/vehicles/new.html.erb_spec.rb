@@ -5,7 +5,7 @@ describe 'vehicles/new.html.erb' do
 
   context 'Admin user register new vehicle to a transport modality' do 
     it 'if authenticated' do 
-      visit vehicles_path 
+      visit search_vehicles_path 
 
       expect(page).not_to have_content 'Novo Veículo'
 

@@ -12,9 +12,9 @@
   <body>
     <h1> <%= t 'app_name' %> </h1>
     <nav>
-      <%= link_to t('buttons.home'), root_path %>
-      <%= link_to t('activerecord.models.service_order.many'), service_orders_path %>
-      <%= link_to t('activerecord.models.vehicle.many'), vehicles_path %>
+      <%= link_to t('buttons.home'), root_path %> |
+      <%= link_to t('activerecord.models.service_order.many'), service_orders_path %> |
+      <%= link_to t('activerecord.models.vehicle.many'), vehicles_path %> |
       
       <% if user_signed_in? %>
         <% if current_user.admin? %>

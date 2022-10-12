@@ -1,0 +1,28 @@
+<article>
+  <header>
+    <p>
+      <h2> <%= "#{ t 'search_results' }: #{ @searched_term }" %> </h2>
+    </p>
+  </header>
+  <main>
+    <% unless !@found_vehicles %>
+      <%= found_vehicles_message(@found_vehicles) %>
+      <% @found_vehicles.each do |vehicle| %>
+        <dl>
+          <p>
+            <dt> <%= Vehicle.human_attribute_name 'license_plate' %>: </dt>
+            <dd> <%= vehicle.license_plate %>
+          </p>
+          <p>
+            <dt> <%= Vehicle.human_attribute_name 'transport_modality' %>: </dt>
+            <dd> <%= link_to vehicle.transport_modality.name, transport_modality_path(vehicle.transport_modality) %> </dd>
+          </p>
+          <p>
+            <dt> <%= t 'activerecord.attributes.vehicle.status.one' %>: </dt>
+            <dd> <%= t vehicle.status, scope: [:activerecord, :attributes, :vehicle, :status] %> </dd>
+          </p>
+        </dl>
+      <% end %>
+    <% end %>
+  </main>
+</article>

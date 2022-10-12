@@ -1,5 +1,9 @@
 ---
 pt-BR:
+  buttons:
+    search_vehicle: 'Buscar Veículo'
+
   messages:
     vehicle_created_with_success: 'Veículo criado com sucesso'
     vehicle_not_created: 'Veículo não foi criado'
+    no_vehicles_found: 'Nenhum Veículo encontrado'

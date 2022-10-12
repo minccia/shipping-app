@@ -5,6 +5,9 @@ pt-BR:
     meters: 'metros'
     grams: 'gramas'
     km: 'quilômetros'
+  found:
+    singular: 'encontrado'
+    plural: 'encontrados'
 
   "yes" : 'Sim'
   "no" : 'Não'
@@ -29,3 +32,4 @@ pt-BR:
   no_transport_modalities_yet: 'Não há modalidades de transporte ainda'
   modality_updated_with_success: 'Modalidade atualizada com sucesso'
   modality_not_updated: 'Modalidade não atualizada'
+  search_results: 'Resultados da busca por'

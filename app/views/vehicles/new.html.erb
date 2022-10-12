@@ -4,33 +4,5 @@
     <%= render 'application/errors', model: @vehicle %>
   </header>
   <main>
-    <%= form_with model: @vehicle do |f| %>
-      <p>
-        <%= f.label :license_plate %>
-        <%= f.text_field :license_plate %>
-      </p>
-      <p>
-        <%= f.label :brand_name %>
-        <%= f.text_field :brand_name %>
-      </p>
-      <p>
-        <%= f.label :vehicle_type %>
-        <%= f.text_field :vehicle_type %>
-      </p>
-      <p>
-        <%= f.label :fabrication_year %>
-        <%= f.text_field :fabrication_year %>
-      </p>
-      <p>
-        <%= f.label :maximum_capacity %>
-        <%= f.text_field :maximum_capacity %>
-      </p>
-      <p>
-        <%= f.label :transport_modality_id %>
-        <%= f.collection_select :transport_modality_id, TransportModality.all, :id, :name, prompt: true %>
-      </p>
-      <p>
-        <%= f.submit t('buttons.submit') %>
-      </p>
-    <% end %>
+    <%= render 'vehicle_form', vehicle: @vehicle %>
 </article>

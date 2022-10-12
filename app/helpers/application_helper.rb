@@ -7,4 +7,12 @@ module ApplicationHelper
     return I18n.translate('no_minimum') if attribute.nil?
     attribute
   end
+
+  def found_vehicles_message(collection)
+    if collection.length == 1 
+      return "1 #{ Vehicle.model_name.human} #{ t 'found.singular' }"
+    end
+    return "#{ collection.count } #{ t 'activerecord.models.vehicle.many'} #{ t 'found.plural' }"
+  end
+
 end

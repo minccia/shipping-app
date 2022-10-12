@@ -1,9 +1,8 @@
 class VehiclesController < ApplicationController
-  before_action :authenticate_user!, only: %i[index]
+  before_action :authenticate_user!, only: %i[index search]
   before_action :require_admin, only: %i[new]
 
-  def index 
-  end
+  def index; end 
 
   def new 
     @vehicle = Vehicle.new
@@ -17,6 +16,15 @@ class VehiclesController < ApplicationController
     end
     flash.now.notice = t 'messages.vehicle_not_created'
     render :new, status: :unprocessable_entity
+  end
+
+  def search 
+    @searched_term = params[:query]
+    @found_vehicles = Vehicle.where("license_plate LIKE ?", "%#{@searched_term}%")
+    if @found_vehicles.empty? 
+      flash.notice = t 'messages.no_vehicles_found'
+      return redirect_to vehicles_url
+    end
   end
 
   private 
