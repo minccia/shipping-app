@@ -1,9 +1,9 @@
 class TransportModality < ApplicationRecord
   has_many :vehicles
-  has_one :distance_price_table
-  has_one :weight_price_table
+  has_one :distance_price_table, dependent: :nullify
+  has_one :weight_price_table, dependent: :nullify
 
-  before_validation :ensure_transport_modality_has_price_tables
+  before_save :ensure_transport_modality_has_price_tables
   validates :name, :maximum_distance, :maximum_weight, :fee, presence: true
 
   private 

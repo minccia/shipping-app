@@ -10,22 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_12_174922) do
-  create_table "distance_price_lines", force: :cascade do |t|
-    t.integer "distance_price_table_id", null: false
-    t.integer "first_interval"
-    t.integer "second_interval"
-    t.float "price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["distance_price_table_id"], name: "index_distance_price_lines_on_distance_price_table_id"
-  end
-
+ActiveRecord::Schema[7.0].define(version: 2022_10_12_184621) do
   create_table "distance_price_tables", force: :cascade do |t|
-    t.integer "transport_modality_id", null: false
+    t.integer "transport_modality_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["transport_modality_id"], name: "index_distance_price_tables_on_transport_modality_id"
+  end
+
+  create_table "price_lines", force: :cascade do |t|
+    t.integer "first_interval"
+    t.integer "second_interval"
+    t.float "price"
+    t.integer "distance_price_table_id", null: false
+    t.integer "weight_price_table_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["distance_price_table_id"], name: "index_price_lines_on_distance_price_table_id"
+    t.index ["weight_price_table_id"], name: "index_price_lines_on_weight_price_table_id"
   end
 
   create_table "service_orders", force: :cascade do |t|
@@ -84,25 +86,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_12_174922) do
     t.index ["transport_modality_id"], name: "index_vehicles_on_transport_modality_id"
   end
 
-  create_table "weight_price_lines", force: :cascade do |t|
-    t.integer "weight_price_table_id", null: false
-    t.integer "first_interval"
-    t.integer "second_interval"
-    t.float "price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["weight_price_table_id"], name: "index_weight_price_lines_on_weight_price_table_id"
-  end
-
   create_table "weight_price_tables", force: :cascade do |t|
-    t.integer "transport_modality_id", null: false
+    t.integer "transport_modality_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["transport_modality_id"], name: "index_weight_price_tables_on_transport_modality_id"
   end
 
-  add_foreign_key "distance_price_lines", "distance_price_tables"
   add_foreign_key "distance_price_tables", "transport_modalities"
-  add_foreign_key "weight_price_lines", "weight_price_tables"
+  add_foreign_key "price_lines", "distance_price_tables"
+  add_foreign_key "price_lines", "weight_price_tables"
   add_foreign_key "weight_price_tables", "transport_modalities"
 end
