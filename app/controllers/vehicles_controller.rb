@@ -1,6 +1,7 @@
 class VehiclesController < ApplicationController
   before_action :authenticate_user!, only: %i[index search]
   before_action :require_admin, only: %i[new edit update send_to_maintenance]
+  before_action :fetch_vehicle, only: %i[show edit send_to_maintenance]
 
   def index; end 
 
@@ -31,22 +32,21 @@ class VehiclesController < ApplicationController
     end
   end
 
-  def show 
-    @vehicle = Vehicle.find params[:id]
-  end
+  def show; end
 
   def send_to_maintenance 
-    @vehicle = Vehicle.find params[:id]
     @vehicle.on_maintenance!
     flash.notice = t 'messages.sent_to_maintenance', license_plate: @vehicle.license_plate
-    return redirect_to vehicles_path
+    return redirect_to vehicles_url
   end
 
-  def edit 
-    @vehicle = Vehicle.find params[:id]
-  end
+  def edit; end
 
   private 
+
+    def fetch_vehicle
+      @vehicle = Vehicle.find params[:id]
+    end
 
     def new_vehicle_params 
       params.require(:vehicle).permit(
