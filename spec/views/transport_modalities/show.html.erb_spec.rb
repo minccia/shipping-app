@@ -88,6 +88,20 @@ describe 'transport_modalities/show.html.erb' do
         expect(page).to have_content 'De 20Km à 40Km: R$ 10,00'
       end
     end
-  end
 
+    it 'and there are no entries to the tables yet' do 
+      trans_mod = FactoryBot.create(:transport_modality)
+      
+      login_as user, scope: :user
+      visit transport_modality_path(trans_mod.id)
+
+      within '#weight_price_table' do 
+        expect(page).to have_content 'Ainda não há preços nesta tabela'
+      end
+      within '#distance_price_table' do 
+        expect(page).to have_content 'Ainda não há preços nesta tabela'
+      end
+    end
+
+  end
 end
