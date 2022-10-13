@@ -6,6 +6,7 @@ describe 'service_orders/new.html.erb' do
   context 'Admin user create a new service order' do 
     it 'if authenticated as an admin user' do 
       common_user = FactoryBot.create(:user, role: 'common')
+      
       login_as common_user, scope: :user
       visit new_service_order_path
       

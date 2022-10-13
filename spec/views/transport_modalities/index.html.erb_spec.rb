@@ -5,11 +5,13 @@ describe 'transport_modality/index.html.erb' do
   context 'User view transport modalities' do 
     let(:user) { FactoryBot.create(:user) }
 
-    it 'if authenticated' do 
+    it 'if not authenticated - Dont see button' do 
       visit root_path
 
       expect(page).not_to have_content 'Modalidades de transporte'
+    end
 
+    it 'if not authenticated -- Permission denied to access page' do 
       visit transport_modalities_path
 
       expect(current_path).to eq new_user_session_path

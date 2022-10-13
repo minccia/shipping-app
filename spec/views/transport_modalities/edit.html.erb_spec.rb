@@ -4,7 +4,7 @@ describe 'transport_modalities/edit.html.erb' do
   let(:admin) { FactoryBot.create(:user, role: :admin) }
 
   context 'Admin user edit existing transport modality' do 
-    it 'if authenticated' do 
+    it 'if not authenticated -- Dont see button' do 
       common_user = FactoryBot.create(:user, role: :common)
       trans_mod = FactoryBot.create(:transport_modality)
 
@@ -12,6 +12,11 @@ describe 'transport_modalities/edit.html.erb' do
       visit transport_modalities_path 
 
       expect(page).not_to have_content 'Editar'
+    end
+
+    it 'if not authenticated -- Permission denied to access page' do 
+      common_user = FactoryBot.create(:user, role: :common)
+      trans_mod = FactoryBot.create(:transport_modality)
 
       visit edit_transport_modality_path(trans_mod.id)
 
