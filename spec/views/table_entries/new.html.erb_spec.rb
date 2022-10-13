@@ -56,5 +56,21 @@ describe 'table_entries/new.html.erb' do
       expect(page).to have_content 'De 0Km à 20Km: R$ 5,00'
     end
 
+    it 'and dont fill all fields' do 
+      trans_mod = FactoryBot.create(:transport_modality)
+
+      login_as admin, scope: :user
+      visit transport_modality_path(trans_mod.id)
+
+      within '#weight_price_table' do 
+        fill_in 'De', with: ''
+        fill_in 'Até', with: ''
+        fill_in 'Preço', with: ''
+        click_on 'Adicionar'
+      end
+
+      expect(page).to have_content 'Preço não foi adicionado'
+    end
+
   end
 end
