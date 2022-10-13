@@ -4,7 +4,8 @@ pt-BR:
     centimeters: 'centímetros'
     meters: 'metros'
     grams: 'gramas'
-    km: 'quilômetros'
+    kilometers: 'Km'
+    kilograms: 'Kgs'
   found:
     one: 'encontrado'
     other: 'encontrados'
@@ -35,3 +36,5 @@ pt-BR:
   modality_updated_with_success: 'Modalidade atualizada com sucesso'
   modality_not_updated: 'Modalidade não atualizada'
   search_results: 'Resultados da busca por'
+  price_added_to_table_with_success: 'Preço adicionado a tabela com sucesso'
+  price_not_added: 'Preço não foi adicionado'

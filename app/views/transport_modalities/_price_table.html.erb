@@ -1,0 +1,11 @@
+<h3> <%= table_type.model_name.human %> </h3>
+<table>
+  <tbody>
+    <% entries.each do |entry| %>
+    <tr>
+      <td> <%= t 'from' %> <%= entry.first_interval %><%= unit %> <%= t 'to' %> <%= entry.second_interval %><%= unit %>: </td> 
+      <td> <strong> <%= number_to_currency(entry.price) %> </strong> </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

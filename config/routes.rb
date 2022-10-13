@@ -8,4 +8,6 @@ Rails.application.routes.draw do
     get 'search', on: :collection
     get 'send_to_maintenance', on: :member
   end
+
+  resources :table_entries, only: %i[new create]
 end

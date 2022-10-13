@@ -1,0 +1,16 @@
+<% if current_user.admin? %>
+  <%= form_with model: TableEntry.new do |f| %>
+    <%= f.label :first_interval %>
+    <%= f.number_field :first_interval %> &nbsp;&nbsp;
+  
+    <%= f.label :second_interval %>
+    <%= f.number_field :second_interval %> &nbsp;&nbsp;
+  
+    <%= f.label :price %>
+    <%= f.number_field :price, step: 0.5 %>
+  
+    <%= f.hidden_field table, value: table_id %>
+  
+    <%= f.submit t('buttons.add') %>
+  <% end %>
+<% end %>

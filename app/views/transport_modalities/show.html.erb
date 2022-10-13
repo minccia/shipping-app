@@ -2,7 +2,6 @@
   <header>
     <h3> <%= @transport_modality.name %> </h3>
   </header>
-
   <main>
     <section>
       <dl>
@@ -35,19 +34,28 @@
         <%= link_to t('buttons.edit'), edit_transport_modality_path %>
       <% end %>
     </section>
-    <section>
-      <h3> <%= WeightPriceTable.model_name.human %> </h3>
-        <table>
-          <tbody>
-            <% @transport_modality.weight_price_table.table_entries.each do |entry| %>
-            <tr>
-              <td> <%= t 'from' %> <%= entry.first_interval %>Kgs <%= t 'to' %> <%= entry.second_interval %>Kgs </td> 
-              <td> <strong> <%= number_to_currency(entry.price) %> </strong> Por Km </td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-        <hr>
+    <section id='weight_price_table'>
+      <%= render partial: 'price_table', locals: 
+                                                { table_type: WeightPriceTable,
+                                                  entries: @transport_modality.weight_price_table.table_entries,
+                                                  unit: t('units.kilograms') 
+                                                } %>
+
+      <%= render 'table_entry_form', table: :weight_price_table_id, table_id: @transport_modality.weight_price_table.id %>
+    </section>
+    <hr>
+    <section id='distance_price_table'>
+      <%= render partial: 'price_table', locals: 
+                                                { table_type: DistancePriceTable,
+                                                  entries: @transport_modality.distance_price_table.table_entries,
+                                                  unit: t('units.kilometers')
+                                                 } %>
+
+      <%= render 'table_entry_form', table: :distance_price_table_id, table_id: @transport_modality.distance_price_table.id %>
     </section>
   </main>
+
+  # FALTA FAZER TESTE PRA QUANDO NÃO EXISTEM VALORES LANÇADOS NA TABELA AINDA 
+  # EXIBIR UMA MENSAGEM PRO USUÁRIO E REFATORAR TUDO ISSO QUE TÁ MUITO FEIO!!
+  # DEPOIS FAZER O EDIT DOS VALORES
 </article>

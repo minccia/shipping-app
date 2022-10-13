@@ -12,7 +12,9 @@ pt-BR:
         one: 'Veículo'
         other: 'Veículos'
       weight_price_table:
-        one: 'Tabela de Preços por Peso'
+        one: 'Tabela de preços por Peso'
+      distance_price_table:
+        one: 'Tabela de preços por Distância'
     attributes:
       service_order:
         sender_full_address: 'Endereço do remetente'
@@ -55,6 +57,10 @@ pt-BR:
           on_maintenance: 'Em manutenção' 
         transport_modality: 'Modalidade de transporte'
         transport_modality_id: 'Modalidade de transporte'
+      table_entry:
+        first_interval: 'De'
+        second_interval: 'Até'
+        price: 'Preço'
 
         
         

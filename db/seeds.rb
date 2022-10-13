@@ -28,3 +28,13 @@ Vehicle.create!(license_plate: 'ZDN4B52',
                 fabrication_year: '2005',
                 maximum_capacity: '800',
                 transport_modality: trans_mod)
+
+TableEntry.create!(first_interval: 0, second_interval: 1, price: 0.5, weight_price_table_id: trans_mod.weight_price_table.id)
+TableEntry.create!(first_interval: 1, second_interval: 2, price: 1.0, weight_price_table_id: trans_mod.weight_price_table.id)
+TableEntry.create!(first_interval: 2, second_interval: 3, price: 1.5, weight_price_table_id: trans_mod.weight_price_table.id)
+TableEntry.create!(first_interval: 3, second_interval: 4, price: 2.0, weight_price_table_id: trans_mod.weight_price_table.id)
+
+TableEntry.create!(first_interval: 0, second_interval: 20, price: 5, distance_price_table_id: trans_mod.distance_price_table.id)
+TableEntry.create!(first_interval: 20, second_interval: 40, price: 10, distance_price_table_id: trans_mod.distance_price_table.id)
+TableEntry.create!(first_interval: 40, second_interval: 60, price: 15, distance_price_table_id: trans_mod.distance_price_table.id)
+TableEntry.create!(first_interval: 60, second_interval: 80, price: 20, distance_price_table_id: trans_mod.distance_price_table.id)
