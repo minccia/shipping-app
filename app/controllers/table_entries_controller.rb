@@ -1,5 +1,6 @@
 class TableEntriesController < ApplicationController
   before_action :require_admin
+  before_action :fetch_entry, only: %i[edit update]
 
   def create 
     table_type = self.discover_table_type
@@ -15,23 +16,22 @@ class TableEntriesController < ApplicationController
     return redirect_to transport_modality_url(table_type.find(table_id).transport_modality.id)
   end
 
-  def edit 
-    @table_entry = TableEntry.find params[:id]
-  end
+  def edit; end
 
   def update 
-    @table_entry = TableEntry.find params[:id]
-    table = @table_entry.weight_price_table.nil? ? @table_entry.distance_price_table : @table_entry.weight_price_table
-
     if @table_entry.update new_table_entry_params
       flash.notice = t 'price_updated_with_success'
-      return redirect_to transport_modality_url(table.transport_modality.id)
+      return redirect_to transport_modality_url(@table_entry.fetch_table.transport_modality.id)
     end
     flash.now.notice = t 'price_not_updated'
     render :edit, status: :unprocessable_entity
   end
 
   private 
+
+  def fetch_entry 
+    @table_entry = TableEntry.find params[:id]
+  end
 
   def new_table_entry_params 
     params.require(:table_entry).permit(
