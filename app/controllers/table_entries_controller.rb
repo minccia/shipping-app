@@ -1,19 +1,17 @@
 class TableEntriesController < ApplicationController
   before_action :require_admin
+  before_action :discover_entry_associated_table, only: %i[create]
   before_action :fetch_entry, only: %i[edit update]
 
   def create 
-    table_type = self.discover_table_type
-    table_id = self.decide_which_table_id
     @table_entry = TableEntry.new new_table_entry_params
 
     if @table_entry.save 
       flash.notice = t 'price_added_to_table_with_success'
-      return redirect_to transport_modality_url(table_type.find(table_id).transport_modality.id)
+      return redirect_to transport_modality_url(@table.transport_modality.id)
     end
-
     flash.notice = t 'price_not_added'
-    return redirect_to transport_modality_url(table_type.find(table_id).transport_modality.id)
+    return redirect_to transport_modality_url(@table.transport_modality.id)
   end
 
   def edit; end
@@ -41,17 +39,12 @@ class TableEntriesController < ApplicationController
     )
   end
 
-  def discover_table_type
-    params[:table_entry][:weight_price_table_id].nil? ? DistancePriceTable : WeightPriceTable
-  end
-
-  def decide_which_table_id
-    parameters = params[:table_entry]
-
-    if parameters[:weight_price_table_id].nil?
-      return parameters[:distance_price_table_id]
+  def discover_entry_associated_table
+    if params[:table_entry][:weight_price_table_id].nil?
+      @table = DistancePriceTable.find params[:table_entry][:distance_price_table_id] 
+    else 
+      @table = WeightPriceTable.find params[:table_entry][:weight_price_table_id]
     end
-    parameters[:weight_price_table_id]
   end
   
 end
