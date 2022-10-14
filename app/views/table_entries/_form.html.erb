@@ -1,5 +1,5 @@
 <% if current_user.admin? %>
-  <%= form_with model: TableEntry.new do |f| %>
+  <%= form_with model: table_entry do |f| %>
     <%= f.label :first_interval %>
     <%= f.number_field :first_interval %> &nbsp;&nbsp;
   

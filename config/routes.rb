@@ -9,5 +9,5 @@ Rails.application.routes.draw do
     get 'send_to_maintenance', on: :member
   end
 
-  resources :table_entries, only: %i[new create]
+  resources :table_entries, only: %i[new create edit update]
 end

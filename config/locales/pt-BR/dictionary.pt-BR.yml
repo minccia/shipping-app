@@ -39,3 +39,5 @@ pt-BR:
   price_added_to_table_with_success: 'Preço adicionado a tabela com sucesso'
   price_not_added: 'Preço não foi adicionado'
   no_entries_yet: 'Ainda não há preços nesta tabela'
+  price_updated_with_success: 'Preço atualizado com sucesso'
+  price_not_updated: 'Preço não atualizado'

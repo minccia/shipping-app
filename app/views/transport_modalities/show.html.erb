@@ -41,7 +41,7 @@
                                                   unit: t('units.kilograms') 
                                                 } %>
 
-      <%= render 'table_entry_form', table: :weight_price_table_id, table_id: @transport_modality.weight_price_table.id %>
+      <%= render 'table_entries/form', table_entry: TableEntry.new, table: :weight_price_table_id, table_id: @transport_modality.weight_price_table.id %>
     </section>
     <hr>
     <section id='distance_price_table'>
@@ -51,11 +51,7 @@
                                                   unit: t('units.kilometers')
                                                  } %>
 
-      <%= render 'table_entry_form', table: :distance_price_table_id, table_id: @transport_modality.distance_price_table.id %>
+      <%= render 'table_entries/form', table_entry: TableEntry.new, table: :distance_price_table_id, table_id: @transport_modality.distance_price_table.id %>
     </section>
   </main>
-
-  # FALTA FAZER TESTE PRA QUANDO NÃO EXISTEM VALORES LANÇADOS NA TABELA AINDA 
-  # EXIBIR UMA MENSAGEM PRO USUÁRIO E REFATORAR TUDO ISSO QUE TÁ MUITO FEIO!!
-  # DEPOIS FAZER O EDIT DOS VALORES
 </article>

@@ -1,0 +1,143 @@
+require 'rails_helper'
+
+describe 'table_entries/edit.html.erb' do 
+  context 'Admin user edit entries from transport modality price tables' do 
+    it 'if authenticated' do 
+      common_user = FactoryBot.create(:user, role: :common)
+      trans_mod = FactoryBot.create(:transport_modality)
+
+      TableEntry.create!(
+                         first_interval: 0, second_interval: 1,
+                         price: 0.5, weight_price_table_id: trans_mod.weight_price_table.id
+                        )
+      TableEntry.create!(
+                         first_interval: 200, second_interval: 1000,
+                         price: 20.3, distance_price_table_id: trans_mod.distance_price_table.id
+                        )                  
+
+      login_as common_user, scope: :user 
+      visit transport_modality_path(trans_mod.id)
+
+      within '#weight_price_table' do 
+        expect(page).not_to have_button 'Editar'
+      end
+      within '#distance_price_table' do 
+        expect(page).not_to have_button 'Editar'
+      end
+    end
+
+    it 'and see a formulary to edit entry from weight price table' do 
+      admin = FactoryBot.create(:user, role: :admin)
+      trans_mod = FactoryBot.create(:transport_modality)
+      TableEntry.create!(
+                         first_interval: 0, second_interval: 1,
+                         price: 0.5, weight_price_table_id: trans_mod.weight_price_table.id
+                        )
+  
+      login_as admin, scope: :user
+      visit transport_modality_path(trans_mod.id)
+      within '#weight_price_table' do 
+        click_on 'Editar'
+      end
+
+      expect(page).to have_field 'De', with: '0'
+      expect(page).to have_field 'Até', with: '1'
+      expect(page).to have_field 'Preço', with: '0.5'
+    end
+
+    it 'and edit entry from weight price table with sucess' do 
+      admin = FactoryBot.create(:user, role: :admin)
+      trans_mod = FactoryBot.create(:transport_modality)
+      TableEntry.create!(
+                         first_interval: 0, second_interval: 1,
+                         price: 0.5, weight_price_table_id: trans_mod.weight_price_table.id
+                        )
+  
+      login_as admin, scope: :user
+      visit transport_modality_path(trans_mod.id)
+      within '#weight_price_table' do 
+        click_on 'Editar'
+      end
+
+      fill_in 'De', with: '10'
+      fill_in 'Até', with: '35'
+      fill_in 'Preço', with: '39.9'
+      click_on 'Adicionar'
+
+      expect(current_path).to eq transport_modality_path(trans_mod.id)
+      expect(page).to have_content 'Preço atualizado com sucesso'
+      within '#weight_price_table' do 
+        expect(page).to have_content 'De 10Kgs à 35Kgs: R$ 39,90'
+      end
+    end
+
+    it 'and see a formulary to edit entry from distance price table' do 
+      admin = FactoryBot.create(:user, role: :admin)
+      trans_mod = FactoryBot.create(:transport_modality)
+      TableEntry.create!(
+                         first_interval: 100, second_interval: 500,
+                         price: 30.0, distance_price_table_id: trans_mod.distance_price_table.id
+                        )
+  
+      login_as admin, scope: :user
+      visit transport_modality_path(trans_mod.id)
+      within '#distance_price_table' do 
+        click_on 'Editar'
+      end
+
+      expect(page).to have_field 'De', with: '100'
+      expect(page).to have_field 'Até', with: '500'
+      expect(page).to have_field 'Preço', with: '30.0'
+    end
+
+    it 'and edit entry from distance price table with sucess' do 
+      admin = FactoryBot.create(:user, role: :admin)
+      trans_mod = FactoryBot.create(:transport_modality)
+      TableEntry.create!(
+                         first_interval: 0, second_interval: 1,
+                         price: 0.5, distance_price_table_id: trans_mod.distance_price_table.id
+                        )
+  
+      login_as admin, scope: :user
+      visit transport_modality_path(trans_mod.id)
+      within '#distance_price_table' do 
+        click_on 'Editar'
+      end
+
+      fill_in 'De', with: '20'
+      fill_in 'Até', with: '40'
+      fill_in 'Preço', with: '50.9'
+      click_on 'Adicionar'
+
+      expect(current_path).to eq transport_modality_path(trans_mod.id)
+      expect(page).to have_content 'Preço atualizado com sucesso'
+      within '#distance_price_table' do 
+        expect(page).to have_content 'De 20Km à 40Km: R$ 50,90'
+      end
+    end
+
+    it 'and don fill all fields' do 
+      admin = FactoryBot.create(:user, role: :admin)
+      trans_mod = FactoryBot.create(:transport_modality)
+      tbentry = TableEntry.create!(
+                                  first_interval: 0, second_interval: 1,
+                                  price: 0.5, distance_price_table_id: trans_mod.distance_price_table.id
+                             )
+  
+      login_as admin, scope: :user
+      visit transport_modality_path(trans_mod.id)
+      within '#distance_price_table' do 
+        click_on 'Editar'
+      end
+
+      fill_in 'De', with: ''
+      fill_in 'Até', with: ''
+      fill_in 'Preço', with: ''
+      click_on 'Adicionar'
+
+      expect(current_path).to eq table_entry_path(tbentry.id)
+      expect(page).to have_content 'Preço não atualizado'
+    end
+  end
+
+end
