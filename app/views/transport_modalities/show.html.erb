@@ -39,7 +39,8 @@
         <%= render partial: 'table_sample', locals: 
                                                   { table_type: WeightPriceTable,
                                                     entries: @transport_modality.weight_price_table.table_entries,
-                                                    unit: t('units.kilograms') 
+                                                    unit: t('units.kilograms'),
+                                                    value_formatting: 'currency'
                                                   } %>
   
         <%= render 'table_entries/form', table_entry: TableEntry.new, table: :weight_price_table_id, table_id: @transport_modality.weight_price_table.id %>
@@ -49,7 +50,8 @@
         <%= render partial: 'table_sample', locals: 
                                                   { table_type: DistancePriceTable,
                                                     entries: @transport_modality.distance_price_table.table_entries,
-                                                    unit: t('units.kilometers')
+                                                    unit: t('units.kilometers'),
+                                                    value_formatting: 'currency'
                                                    } %>
   
         <%= render 'table_entries/form', table_entry: TableEntry.new, table: :distance_price_table_id, table_id: @transport_modality.distance_price_table.id %>
@@ -58,7 +60,8 @@
         <%= render partial: 'table_sample', locals: 
                                                   { table_type: FreightTable,
                                                     entries: @transport_modality.freight_table.table_entries,
-                                                    unit: t('units.kilometers')
+                                                    unit: t('units.kilometers'),
+                                                    value_formatting: 'hours/days'
                                                   } %>
       </div>
     </section>

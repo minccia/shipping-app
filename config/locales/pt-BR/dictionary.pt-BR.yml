@@ -6,6 +6,10 @@ pt-BR:
     grams: 'gramas'
     kilometers: 'Km'
     kilograms: 'Kgs'
+    hours: 'Horas'
+    days:
+      one: 'Dia'
+      other: 'Dias'
   found:
     one: 'encontrado'
     other: 'encontrados'

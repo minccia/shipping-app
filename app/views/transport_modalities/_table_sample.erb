@@ -1,0 +1,22 @@
+<h3> <%= table_type.model_name.human %> </h3>
+<table>
+  <tbody>
+    <% if entries.empty? %>
+      <%= t 'no_entries_yet' %>
+    <% else %>
+      <% entries.each do |entry| %>
+        <tr>
+          <td> <%= t 'from' %> <%= entry.first_interval %><%= unit %> <%= t 'to' %> <%= entry.second_interval %><%= unit %>: </td> 
+          <% if value_formatting == 'currency' %>
+          <td> <strong> <%= number_to_currency(entry.value) %> </strong> </td> 
+          <% else %>
+            <td> <strong> <%= table_entry_hours_and_days(entry.value) %> </strong> </td> 
+          <% end %>
+          <% if current_user.admin? %>
+            <td> <%= link_to t('buttons.edit'), edit_table_entry_path(entry.id) %> </td>
+          <% end %>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

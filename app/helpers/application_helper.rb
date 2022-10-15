@@ -13,4 +13,9 @@ module ApplicationHelper
     "#{ collection.count } #{ vehicles } #{ t(:found, count: collection.count) }"
   end
 
+  def table_entry_hours_and_days(value)
+    day_quantity = value/24
+    "#{value.to_i} #{  t 'units.hours' } (#{day_quantity.to_i} #{ t 'units.days', count: day_quantity })"
+  end
+
 end

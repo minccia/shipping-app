@@ -15,6 +15,8 @@ pt-BR:
         one: 'Tabela de preços por Peso'
       distance_price_table:
         one: 'Tabela de preços por Distância'
+      freight_table:
+        one: 'Tabela de prazos'
     attributes:
       service_order:
         sender_full_address: 'Endereço do remetente'

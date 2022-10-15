@@ -109,15 +109,15 @@ describe 'transport_modalities/show.html.erb' do
     it 'from detals page' do 
       trans_mod =  FactoryBot.create(:transport_modality) 
       TableEntry.create!(first_interval: 0, second_interval: 50, value: 24, freight_table_id: trans_mod.freight_table.id)
+      TableEntry.create!(first_interval: 50, second_interval: 100, value: 48, freight_table_id: trans_mod.freight_table.id)
 
       login_as user, scope: :user 
       visit transport_modality_path(trans_mod.id)
 
       expect(page).to have_content 'Tabela de prazos'
-      expect(page).to have_content 'De 0Kms até 50Kms: 24 Horas (1 Dia)'
+      expect(page).to have_content 'De 0Km à 50Km: 24 Horas (1 Dia)'
+      expect(page).to have_content 'De 50Km à 100Km: 48 Horas (2 Dias)'
     end
 
-    it 'with due dates schema' do 
-    end
   end
 end
