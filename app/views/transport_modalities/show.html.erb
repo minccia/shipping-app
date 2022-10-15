@@ -3,7 +3,7 @@
     <h3> <%= @transport_modality.name %> </h3>
   </header>
   <main>
-    <section>
+    <section id='transport_modality_details'>
       <dl>
         <p>
           <dt> <%= TransportModality.human_attribute_name 'minimum_distance' %>: </dt>
@@ -34,24 +34,33 @@
         <%= link_to t('buttons.edit'), edit_transport_modality_path %>
       <% end %>
     </section>
-    <section id='weight_price_table'>
-      <%= render partial: 'price_table', locals: 
-                                                { table_type: WeightPriceTable,
-                                                  entries: @transport_modality.weight_price_table.table_entries,
-                                                  unit: t('units.kilograms') 
-                                                } %>
-
-      <%= render 'table_entries/form', table_entry: TableEntry.new, table: :weight_price_table_id, table_id: @transport_modality.weight_price_table.id %>
-    </section>
-    <hr>
-    <section id='distance_price_table'>
-      <%= render partial: 'price_table', locals: 
-                                                { table_type: DistancePriceTable,
-                                                  entries: @transport_modality.distance_price_table.table_entries,
-                                                  unit: t('units.kilometers')
-                                                 } %>
-
-      <%= render 'table_entries/form', table_entry: TableEntry.new, table: :distance_price_table_id, table_id: @transport_modality.distance_price_table.id %>
+    <section id='tables'>
+      <div id='weight_price_table'>
+        <%= render partial: 'table_sample', locals: 
+                                                  { table_type: WeightPriceTable,
+                                                    entries: @transport_modality.weight_price_table.table_entries,
+                                                    unit: t('units.kilograms') 
+                                                  } %>
+  
+        <%= render 'table_entries/form', table_entry: TableEntry.new, table: :weight_price_table_id, table_id: @transport_modality.weight_price_table.id %>
+      </div>
+      <hr>
+      <div id='distance_price_table'>
+        <%= render partial: 'table_sample', locals: 
+                                                  { table_type: DistancePriceTable,
+                                                    entries: @transport_modality.distance_price_table.table_entries,
+                                                    unit: t('units.kilometers')
+                                                   } %>
+  
+        <%= render 'table_entries/form', table_entry: TableEntry.new, table: :distance_price_table_id, table_id: @transport_modality.distance_price_table.id %>
+      </div>
+      <div id='freight_table'>
+        <%= render partial: 'table_sample', locals: 
+                                                  { table_type: FreightTable,
+                                                    entries: @transport_modality.freight_table.table_entries,
+                                                    unit: t('units.kilometers')
+                                                  } %>
+      </div>
     </section>
   </main>
 </article>

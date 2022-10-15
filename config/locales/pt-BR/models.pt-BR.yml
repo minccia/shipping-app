@@ -60,7 +60,7 @@ pt-BR:
       table_entry:
         first_interval: 'De'
         second_interval: 'Até'
-        price: 'Preço'
+        value: 'Valor'
 
         
         

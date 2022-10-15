@@ -8,11 +8,11 @@ describe 'table_entries/edit.html.erb' do
 
       TableEntry.create!(
                          first_interval: 0, second_interval: 1,
-                         price: 0.5, weight_price_table_id: trans_mod.weight_price_table.id
+                         value: 0.5, weight_price_table_id: trans_mod.weight_price_table.id
                         )
       TableEntry.create!(
                          first_interval: 200, second_interval: 1000,
-                         price: 20.3, distance_price_table_id: trans_mod.distance_price_table.id
+                         value: 20.3, distance_price_table_id: trans_mod.distance_price_table.id
                         )                  
 
       login_as common_user, scope: :user 
@@ -31,7 +31,7 @@ describe 'table_entries/edit.html.erb' do
       trans_mod = FactoryBot.create(:transport_modality)
       TableEntry.create!(
                          first_interval: 0, second_interval: 1,
-                         price: 0.5, weight_price_table_id: trans_mod.weight_price_table.id
+                         value: 0.5, weight_price_table_id: trans_mod.weight_price_table.id
                         )
   
       login_as admin, scope: :user
@@ -42,7 +42,7 @@ describe 'table_entries/edit.html.erb' do
 
       expect(page).to have_field 'De', with: '0'
       expect(page).to have_field 'Até', with: '1'
-      expect(page).to have_field 'Preço', with: '0.5'
+      expect(page).to have_field 'Valor', with: '0.5'
     end
 
     it 'and edit entry from weight price table with sucess' do 
@@ -50,7 +50,7 @@ describe 'table_entries/edit.html.erb' do
       trans_mod = FactoryBot.create(:transport_modality)
       TableEntry.create!(
                          first_interval: 0, second_interval: 1,
-                         price: 0.5, weight_price_table_id: trans_mod.weight_price_table.id
+                         value: 0.5, weight_price_table_id: trans_mod.weight_price_table.id
                         )
   
       login_as admin, scope: :user
@@ -61,7 +61,7 @@ describe 'table_entries/edit.html.erb' do
 
       fill_in 'De', with: '10'
       fill_in 'Até', with: '35'
-      fill_in 'Preço', with: '39.9'
+      fill_in 'Valor', with: '39.9'
       click_on 'Adicionar'
 
       expect(current_path).to eq transport_modality_path(trans_mod.id)
@@ -76,7 +76,7 @@ describe 'table_entries/edit.html.erb' do
       trans_mod = FactoryBot.create(:transport_modality)
       TableEntry.create!(
                          first_interval: 100, second_interval: 500,
-                         price: 30.0, distance_price_table_id: trans_mod.distance_price_table.id
+                         value: 30.0, distance_price_table_id: trans_mod.distance_price_table.id
                         )
   
       login_as admin, scope: :user
@@ -87,7 +87,7 @@ describe 'table_entries/edit.html.erb' do
 
       expect(page).to have_field 'De', with: '100'
       expect(page).to have_field 'Até', with: '500'
-      expect(page).to have_field 'Preço', with: '30.0'
+      expect(page).to have_field 'Valor', with: '30.0'
     end
 
     it 'and edit entry from distance price table with sucess' do 
@@ -95,7 +95,7 @@ describe 'table_entries/edit.html.erb' do
       trans_mod = FactoryBot.create(:transport_modality)
       TableEntry.create!(
                          first_interval: 0, second_interval: 1,
-                         price: 0.5, distance_price_table_id: trans_mod.distance_price_table.id
+                         value: 0.5, distance_price_table_id: trans_mod.distance_price_table.id
                         )
   
       login_as admin, scope: :user
@@ -106,7 +106,7 @@ describe 'table_entries/edit.html.erb' do
 
       fill_in 'De', with: '20'
       fill_in 'Até', with: '40'
-      fill_in 'Preço', with: '50.9'
+      fill_in 'Valor', with: '50.9'
       click_on 'Adicionar'
 
       expect(current_path).to eq transport_modality_path(trans_mod.id)
@@ -121,7 +121,7 @@ describe 'table_entries/edit.html.erb' do
       trans_mod = FactoryBot.create(:transport_modality)
       tbentry = TableEntry.create!(
                                   first_interval: 0, second_interval: 1,
-                                  price: 0.5, distance_price_table_id: trans_mod.distance_price_table.id
+                                  value: 0.5, distance_price_table_id: trans_mod.distance_price_table.id
                              )
   
       login_as admin, scope: :user
@@ -132,7 +132,7 @@ describe 'table_entries/edit.html.erb' do
 
       fill_in 'De', with: ''
       fill_in 'Até', with: ''
-      fill_in 'Preço', with: ''
+      fill_in 'Valor', with: ''
       click_on 'Adicionar'
 
       expect(current_path).to eq table_entry_path(tbentry.id)

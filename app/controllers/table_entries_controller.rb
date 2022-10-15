@@ -19,7 +19,7 @@ class TableEntriesController < ApplicationController
   def update 
     if @table_entry.update new_table_entry_params
       flash.notice = t 'price_updated_with_success'
-      return redirect_to transport_modality_url(@table_entry.fetch_table.transport_modality.id)
+      return redirect_to transport_modality_url(@table_entry.fetch_price_table.transport_modality.id)
     end
     flash.now.notice = t 'price_not_updated'
     render :edit, status: :unprocessable_entity
@@ -33,7 +33,7 @@ class TableEntriesController < ApplicationController
   
     def new_table_entry_params 
       params.require(:table_entry).permit(
-        :first_interval, :second_interval, :price,
+        :first_interval, :second_interval, :value,
         :weight_price_table_id, :distance_price_table_id,
         :transport_modality_id
       )

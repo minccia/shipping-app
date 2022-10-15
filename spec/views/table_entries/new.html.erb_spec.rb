@@ -13,7 +13,7 @@ describe 'table_entries/new.html.erb' do
 
       expect(page).not_to have_field 'De'
       expect(page).not_to have_field 'Até'
-      expect(page).not_to have_field 'Preço'
+      expect(page).not_to have_field 'Valor'
       expect(page).not_to have_button 'Adicionar'
     end
 
@@ -27,7 +27,7 @@ describe 'table_entries/new.html.erb' do
       expect(page).to have_content 'Tabela de preços por Distância'
       expect(page).to have_field 'De'
       expect(page).to have_field 'Até'
-      expect(page).to have_field 'Preço'
+      expect(page).to have_field 'Valor'
       expect(page).to have_button 'Adicionar'
     end
 
@@ -40,14 +40,14 @@ describe 'table_entries/new.html.erb' do
       within '#weight_price_table' do 
         fill_in 'De', with: '5'
         fill_in 'Até', with: '10'
-        fill_in 'Preço', with: '1.0'
+        fill_in 'Valor', with: '1.0'
         click_on 'Adicionar'
       end
 
       within '#distance_price_table' do 
         fill_in 'De', with: '0'
         fill_in 'Até', with: '20'
-        fill_in 'Preço', with: '5'
+        fill_in 'Valor', with: '5'
         click_on 'Adicionar'
       end
 
@@ -65,7 +65,7 @@ describe 'table_entries/new.html.erb' do
       within '#weight_price_table' do 
         fill_in 'De', with: ''
         fill_in 'Até', with: ''
-        fill_in 'Preço', with: ''
+        fill_in 'Valor', with: ''
         click_on 'Adicionar'
       end
 

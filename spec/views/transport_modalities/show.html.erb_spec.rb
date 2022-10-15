@@ -62,16 +62,16 @@ describe 'transport_modalities/show.html.erb' do
       trans_mod = FactoryBot.create(:transport_modality)
   
       TableEntry.create!(first_interval: 0, second_interval: 1,
-                         price: 0.5, weight_price_table_id: trans_mod.weight_price_table.id)
+                         value: 0.5, weight_price_table_id: trans_mod.weight_price_table.id)
   
       TableEntry.create!(first_interval: 1, second_interval: 2, 
-                         price: 1.0, weight_price_table_id: trans_mod.weight_price_table.id)
+                         value: 1.0, weight_price_table_id: trans_mod.weight_price_table.id)
   
       TableEntry.create!(first_interval: 0, second_interval: 20, 
-                         price: 5, distance_price_table_id: trans_mod.distance_price_table.id)
+                         value: 5, distance_price_table_id: trans_mod.distance_price_table.id)
   
       TableEntry.create!(first_interval: 20, second_interval: 40, 
-                         price: 10, distance_price_table_id: trans_mod.distance_price_table.id)
+                         value: 10, distance_price_table_id: trans_mod.distance_price_table.id)
   
       login_as user, scope: :user
       visit transport_modality_path(trans_mod.id)
@@ -103,5 +103,21 @@ describe 'transport_modalities/show.html.erb' do
       end
     end
 
+  end
+
+  context 'User view transport modality freight table' do
+    it 'from detals page' do 
+      trans_mod =  FactoryBot.create(:transport_modality) 
+      TableEntry.create!(first_interval: 0, second_interval: 50, value: 24, freight_table_id: trans_mod.freight_table.id)
+
+      login_as user, scope: :user 
+      visit transport_modality_path(trans_mod.id)
+
+      expect(page).to have_content 'Tabela de prazos'
+      expect(page).to have_content 'De 0Kms até 50Kms: 24 Horas (1 Dia)'
+    end
+
+    it 'with due dates schema' do 
+    end
   end
 end
