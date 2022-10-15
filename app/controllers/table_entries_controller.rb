@@ -7,10 +7,10 @@ class TableEntriesController < ApplicationController
     @table_entry = TableEntry.new new_table_entry_params
 
     if @table_entry.save 
-      flash.notice = t 'price_added_to_table_with_success'
+      flash.notice = t 'entry_added_to_table_with_success'
       return redirect_to transport_modality_url(@table.transport_modality.id)
     end
-    flash.notice = t 'price_not_added'
+    flash.notice = t 'entry_not_added'
     return redirect_to transport_modality_url(@table.transport_modality.id)
   end
 
@@ -18,10 +18,10 @@ class TableEntriesController < ApplicationController
 
   def update 
     if @table_entry.update new_table_entry_params
-      flash.notice = t 'price_updated_with_success'
-      return redirect_to transport_modality_url(@table_entry.fetch_price_table.transport_modality.id)
+      flash.notice = t 'entry_updated_with_success'
+      return redirect_to transport_modality_url(@table_entry.fetch_table.transport_modality.id)
     end
-    flash.now.notice = t 'price_not_updated'
+    flash.now.notice = t 'entry_not_updated'
     render :edit, status: :unprocessable_entity
   end
 
@@ -35,15 +35,21 @@ class TableEntriesController < ApplicationController
       params.require(:table_entry).permit(
         :first_interval, :second_interval, :value,
         :weight_price_table_id, :distance_price_table_id,
-        :transport_modality_id
+        :freight_table_id, :transport_modality_id
       )
     end
   
     def pick_correct_table_from_params
-      if params[:table_entry][:weight_price_table_id].nil?
-        @table = DistancePriceTable.find params[:table_entry][:distance_price_table_id] 
-      else 
-        @table = WeightPriceTable.find params[:table_entry][:weight_price_table_id]
+      parameters = params[:table_entry]
+      
+      if parameters[:weight_price_table_id].nil? && parameters[:freight_table_id].nil?
+        @table = DistancePriceTable.find parameters[:distance_price_table_id] 
+
+      elsif parameters[:distance_price_table_id].nil? && parameters[:freight_table_id].nil? 
+        @table = WeightPriceTable.find parameters[:weight_price_table_id]
+
+      else  
+        @table = FreightTable.find parameters[:freight_table_id]
       end
     end
   

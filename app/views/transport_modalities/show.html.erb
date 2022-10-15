@@ -63,6 +63,7 @@
                                                     unit: t('units.kilometers'),
                                                     value_formatting: 'hours/days'
                                                   } %>
+        <%= render 'table_entries/form', table_entry: TableEntry.new, table: :freight_table_id, table_id: @transport_modality.freight_table.id %>
       </div>
     </section>
   </main>

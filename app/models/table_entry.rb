@@ -5,12 +5,15 @@ class TableEntry < ApplicationRecord
 
   validates :first_interval, :second_interval, :value, presence: true
 
-  def fetch_price_table 
-    self.weight_price_table.nil? ? self.distance_price_table : self.weight_price_table
-  end
-
-  def hours_and_days
-    day_quantity = self.value/24
-    "#{self.value} #{  'units.hours' } (#{day_quantity} #} #{ t 'units.days', count: day_quantity })"
+  def fetch_table
+    if self.weight_price_table.nil? && self.freight_table.nil? 
+      self.distance_price_table 
+    
+    elsif self.distance_price_table.nil? && self.freight_table.nil? 
+      self.weight_price_table 
+    
+    else  
+      self.freight_table
+    end
   end
 end
