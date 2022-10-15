@@ -1,6 +1,6 @@
 class TableEntriesController < ApplicationController
   before_action :require_admin
-  before_action :discover_entry_associated_table, only: %i[create]
+  before_action :pick_correct_table_from_params, only: %i[create]
   before_action :fetch_entry, only: %i[edit update]
 
   def create 
@@ -27,24 +27,24 @@ class TableEntriesController < ApplicationController
 
   private 
 
-  def fetch_entry 
-    @table_entry = TableEntry.find params[:id]
-  end
-
-  def new_table_entry_params 
-    params.require(:table_entry).permit(
-      :first_interval, :second_interval, :price,
-      :weight_price_table_id, :distance_price_table_id,
-      :transport_modality_id
-    )
-  end
-
-  def discover_entry_associated_table
-    if params[:table_entry][:weight_price_table_id].nil?
-      @table = DistancePriceTable.find params[:table_entry][:distance_price_table_id] 
-    else 
-      @table = WeightPriceTable.find params[:table_entry][:weight_price_table_id]
+    def fetch_entry 
+      @table_entry = TableEntry.find params[:id]
     end
-  end
+  
+    def new_table_entry_params 
+      params.require(:table_entry).permit(
+        :first_interval, :second_interval, :price,
+        :weight_price_table_id, :distance_price_table_id,
+        :transport_modality_id
+      )
+    end
+  
+    def pick_correct_table_from_params
+      if params[:table_entry][:weight_price_table_id].nil?
+        @table = DistancePriceTable.find params[:table_entry][:distance_price_table_id] 
+      else 
+        @table = WeightPriceTable.find params[:table_entry][:weight_price_table_id]
+      end
+    end
   
 end
