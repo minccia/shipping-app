@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'service_orders/show.html.erb' do 
   let(:user) { FactoryBot.create(:user) }
 
-  context 'User view service order details' do 
+  context 'User view pending service order details' do 
     it 'if authenticated' do 
       so = FactoryBot.create(:service_order)
 
@@ -52,4 +52,74 @@ describe 'service_orders/show.html.erb' do
     end
   end
 
+  context 'User initiate service order' do 
+    it 'if pending' do 
+      service_order = FactoryBot.create(:service_order, status: :finished)
+      trans_mod = FactoryBot.create(:transport_modality, name: 'Ghetto Expresso')
+
+      login_as user, scope: :user
+      visit service_order_path(service_order.id)
+      
+      expect(page).not_to have_content 'Iniciar ordem de serviço'
+      expect(page).not_to have_content 'Orçamentos'
+      expect(page).not_to have_content 'Ghetto Expresso'
+      expect(page).not_to have_content 'Selecione a forma de entrega'
+      expect(page).not_to have_button 'Enviar'
+    end
+
+    it 'through cotations section' do 
+      service_order = FactoryBot.create(:service_order, distance: 80, package_weight: 20)
+      trans_mod = TransportModality.create!(name: 'Ghetto', 
+                                            maximum_distance: 100,
+                                            maximum_weight: 25,
+                                            fee: 12.9)
+      TableEntry.create!(first_interval: 11, second_interval: 20, value: 0.50, weight_price_table_id: trans_mod.weight_price_table.id)
+      TableEntry.create!(first_interval: 60, second_interval: 80, value: 20, distance_price_table_id: trans_mod.distance_price_table.id)                                         
+      TableEntry.create!(first_interval: 50, second_interval: 100, value: 72, freight_table_id: trans_mod.freight_table.id)
+
+      login_as user, scope: :user
+      visit service_order_path(service_order.id)
+
+      expect(page).to have_content 'Iniciar ordem de serviço'
+      expect(page).to have_content 'Orçamentos'
+      expect(page).to have_content 'Nome da modalidade Ghetto'
+      expect(page).to have_content 'Valor R$ 72,90'
+      expect(page).to have_content 'Prazo 72 Horas (3 Dias)'
+      expect(page).to have_content 'Selecione a forma de entrega'
+    end
+
+    it 'with success' do 
+      service_order = FactoryBot.create(:service_order, distance: 80, package_weight: 20)
+      trans_mod = TransportModality.create!(name: 'Ghetto', 
+                                            maximum_distance: 100,
+                                            maximum_weight: 25,
+                                            fee: 12.9
+                                          )
+      vehicle = Vehicle.create!(
+                                license_plate: 'ABC1D23',
+                                brand_name: 'Fiat',
+                                vehicle_type: 'Van',
+                                fabrication_year: '2010',
+                                maximum_capacity: '500',
+                                transport_modality: trans_mod
+                              )
+      TableEntry.create!(first_interval: 11, second_interval: 20, value: 0.50, weight_price_table_id: trans_mod.weight_price_table.id)
+      TableEntry.create!(first_interval: 60, second_interval: 80, value: 20, distance_price_table_id: trans_mod.distance_price_table.id)                                         
+      TableEntry.create!(first_interval: 50, second_interval: 100, value: 72, freight_table_id: trans_mod.freight_table.id)
+
+      login_as user, scope: :user
+      visit service_order_path(service_order.id)
+
+      select 'Ghetto', from: 'Selecione a forma de entrega'
+      click_on 'Enviar'
+
+      expect(current_path).to eq service_order_path(service_order.id)
+      expect(page).to have_content 'Ordem de serviço iniciada com sucesso'
+      expect(page).to have_content 'Ordem de serviço em andamento'
+      expect(page).to have_content 'Modalidade de transporte: Ghetto'
+      expect(page).to have_content "Veículo responsável: #{vehicle.license_plate}"
+      expect(page).to have_content "Data estimada de entrega: #{ 72.hours.from_now.strftime("%d/%m/%Y") }"
+      expect(page).to have_content 'Valor: R$ 72,90'
+    end
+  end
 end

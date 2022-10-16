@@ -42,6 +42,7 @@ TableEntry.create!(first_interval: 60, second_interval: 80, value: 20, distance_
 TableEntry.create!(first_interval: 0, second_interval: 50, value: 24, freight_table_id: trans_mod.freight_table.id)
 TableEntry.create!(first_interval: 50, second_interval: 100, value: 72, freight_table_id: trans_mod.freight_table.id)
 
+StartedServiceOrder.destroy_all
 ServiceOrder.destroy_all 
 
 ServiceOrder.create!(

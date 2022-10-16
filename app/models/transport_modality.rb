@@ -3,7 +3,6 @@ class TransportModality < ApplicationRecord
   has_one :distance_price_table, dependent: :nullify
   has_one :weight_price_table, dependent: :nullify
   has_one :freight_table, dependent: :nullify
-  belongs_to :service_order, optional: true
 
   before_save :ensure_transport_modality_has_tables
   validates :name, :maximum_distance, :maximum_weight, :fee, presence: true

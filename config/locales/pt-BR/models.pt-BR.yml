@@ -63,6 +63,13 @@ pt-BR:
         first_interval: 'De'
         second_interval: 'Até'
         value: 'Valor'
+      started_service_order:
+        value: 'Valor'
+        due_date: 'Data estimada de entrega'
+        vehicle: 'Veículo responsável'
+        vehicle_id: 'Veículo responsável'
+        transport_modality: 'Modalidade de transporte'
+        transport_modality_id: 'Modalidade de transporte'
 
         
         

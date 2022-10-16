@@ -2,8 +2,7 @@ class ServiceOrder < ApplicationRecord
   NON_VALIDATABLE_ATTRS = ["id", "created_at", "updated_at"]
   VALIDATABLE_ATTRS = ServiceOrder.attribute_names.reject{ |attr| NON_VALIDATABLE_ATTRS.include?(attr) }
 
-  has_one :vehicle, required: false
-  has_one :transport_modality, required: false
+  has_one :started, class_name: 'StartedServiceOrder', dependent: :nullify
   before_validation :generate_random_package_code
   validates_presence_of VALIDATABLE_ATTRS
   enum :status, { pending: 0, in_progress: 1, finished: 2 }

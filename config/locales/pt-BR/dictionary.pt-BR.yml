@@ -49,3 +49,5 @@ pt-BR:
   starting_service_order: 'Iniciar ordem de serviço'
   cotations: 'Orçamentos'
   due_date: 'Prazo'
+  service_order_in_progress: 'Ordem de serviço em andamento'
+  service_order_initiated_with_success: 'Ordem de serviço iniciada com sucesso'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_15_193828) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_16_234547) do
   create_table "distance_price_tables", force: :cascade do |t|
     t.integer "transport_modality_id"
     t.datetime "created_at", null: false
@@ -40,6 +40,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_15_193828) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
+  end
+
+  create_table "started_service_orders", force: :cascade do |t|
+    t.integer "due_date"
+    t.float "value"
+    t.integer "vehicle_id"
+    t.integer "transport_modality_id"
+    t.integer "service_order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["service_order_id"], name: "index_started_service_orders_on_service_order_id"
+    t.index ["transport_modality_id"], name: "index_started_service_orders_on_transport_modality_id"
+    t.index ["vehicle_id"], name: "index_started_service_orders_on_vehicle_id"
   end
 
   create_table "table_entries", force: :cascade do |t|
@@ -104,6 +117,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_15_193828) do
 
   add_foreign_key "distance_price_tables", "transport_modalities"
   add_foreign_key "freight_tables", "transport_modalities"
+  add_foreign_key "started_service_orders", "service_orders"
+  add_foreign_key "started_service_orders", "transport_modalities"
+  add_foreign_key "started_service_orders", "vehicles"
   add_foreign_key "table_entries", "distance_price_tables"
   add_foreign_key "table_entries", "freight_tables"
   add_foreign_key "table_entries", "weight_price_tables"

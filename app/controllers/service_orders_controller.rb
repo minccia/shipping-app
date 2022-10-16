@@ -1,6 +1,9 @@
 class ServiceOrdersController < ApplicationController
   before_action :authenticate_user!, only: %i[index show]
   before_action :require_admin, only: %i[new create]
+  before_action :fetch_service_order, only: %i[show start]
+  before_action :fetch_transport_modality, only: %i[start]
+  before_action :alocate_vehicle, only: %i[start]
   
   def index 
     @service_orders = ServiceOrder.pending
@@ -20,16 +23,35 @@ class ServiceOrdersController < ApplicationController
     render :new, status: :unprocessable_entity
   end
 
-  def show 
-    @service_order = ServiceOrder.find params[:id]
-  end
+  def show; end
 
   def start 
-    @service_order = ServiceOrder.find params[:id]
-    @service_order.in_progress!
+    value = @transport_modality.so_execution_price(@service_order)
+    due_date = @transport_modality.so_execution_due_date(@service_order).to_i
+    started_so = StartedServiceOrder.new(service_order: @service_order, vehicle: @vehicle,
+                                         transport_modality: @transport_modality, due_date: due_date,
+                                         value: value
+                                        )
+    if started_so.save 
+      @service_order.in_progress!
+      return redirect_to service_order_url(@service_order.id), notice: t('service_order_initiated_with_success')
+    end
   end
 
   private 
+
+    def fetch_service_order
+      @service_order = ServiceOrder.find params[:id]
+    end
+
+    def fetch_transport_modality
+      @transport_modality = TransportModality.find params[:transport_modality_id]
+    end
+
+    def alocate_vehicle
+      @vehicle = @transport_modality.vehicles.available.sample
+      @vehicle.in_operation!
+    end
 
     def new_service_order_params
       params.require(:service_order).permit(

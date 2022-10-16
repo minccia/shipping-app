@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :service_orders, only: %i[index new create show] do 
     get 'start', on: :member
   end
+  
   resources :transport_modalities, only: %i[index create show edit update]
 
   resources :vehicles, only: %i[index new create edit update show] do 

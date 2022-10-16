@@ -38,31 +38,21 @@
       </p>
     </dl>
     <% if @service_order.pending? %>
-    <section>
-      <h3> <%= t('starting_service_order') %> </h3>
-      <div id='cotations'>
-        <h4> <%= t('cotations') %> </h4>
-        <% attending_transport_modalities(@service_order).each do |trans_mod| %>
-          <dl>
-            <p>
-              <dt> <%= TransportModality.human_attribute_name 'name' %> </dt>
-              <dd> <%= trans_mod.name %> </dd>
-    
-              <dt> <%= TableEntry.human_attribute_name 'value' %> </dt>
-              <dd> <%= number_to_currency(trans_mod.so_execution_price(@service_order)) %> </dd>
-    
-              <dt> <%= t('due_date') %> </dt>
-              <dd> <%= table_entry_hours_and_days(trans_mod.so_execution_due_date(@service_order)) %> </dd>
-            </p>
-          </dl>
-        <% end %>
-      </div>
-      <%= form_with url: start_service_order_path, method: :get do |f| %>
-        <%= f.label :transport_modality_id, t('select_delivery') %>
-        <%= f.collection_select :transport_modality_id, attending_transport_modalities(@service_order), :id, :name, prompt: true %>
-        <%= f.submit t('buttons.submit') %>
-      <% end %>
-    </section>
+      <%= render 'start_service_order', service_order: @service_order %>
+    <% end %>
+    <% if @service_order.in_progress? %>
+      <section>
+        <h3> <%= t('service_order_in_progress') %> </h3>
+        <dl>
+          <dt> <%= TransportModality.model_name.human %>: </dt>
+          <dd> <%= @service_order.started.transport_modality.name %> </dd>
+          <dt> <%= StartedServiceOrder.human_attribute_name 'vehicle' %>: </dt>
+          <dd> <%= @service_order.started.vehicle.license_plate %>
+          <dt> <%= StartedServiceOrder.human_attribute_name 'due_date' %>: </dt>
+          <dd> <%= @service_order.started.due_date.hours.from_now.strftime("%d/%m/%Y") %> </dd>
+          <dt> <%= StartedServiceOrder.human_attribute_name 'value' %>: </dt>
+          <dd> <%= number_to_currency(@service_order.started.value) %> </dd>
+      </section>
     <% end %>
   </main>
 </article>
