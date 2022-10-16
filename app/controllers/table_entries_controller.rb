@@ -41,7 +41,6 @@ class TableEntriesController < ApplicationController
   
     def pick_correct_table_from_params
       parameters = params[:table_entry]
-      
       if parameters[:weight_price_table_id].nil? && parameters[:freight_table_id].nil?
         @table = DistancePriceTable.find parameters[:distance_price_table_id] 
 
@@ -50,7 +49,7 @@ class TableEntriesController < ApplicationController
 
       else  
         @table = FreightTable.find parameters[:freight_table_id]
-      end
+      end 
     end
   
 end

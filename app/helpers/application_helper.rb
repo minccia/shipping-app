@@ -18,4 +18,11 @@ module ApplicationHelper
     "#{value.to_i} #{  t 'units.hours' } (#{day_quantity.to_i} #{ t 'units.days', count: day_quantity })"
   end
 
+  def attending_transport_modalities(so)
+    attending = []
+    TransportModality.all.each do |trans_mod| 
+      attending << trans_mod if trans_mod.can_execute_service_order?(so)
+    end
+    attending
+  end
 end

@@ -45,3 +45,7 @@ pt-BR:
   no_entries_yet: 'Ainda não há preços nesta tabela'
   entry_updated_with_success: 'Entrada atualizada com sucesso'
   entry_not_updated: 'Entrada não atualizada'
+  select_delivery: 'Selecione a forma de entrega'
+  starting_service_order: 'Iniciar ordem de serviço'
+  cotations: 'Orçamentos'
+  due_date: 'Prazo'

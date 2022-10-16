@@ -24,6 +24,11 @@ class ServiceOrdersController < ApplicationController
     @service_order = ServiceOrder.find params[:id]
   end
 
+  def start 
+    @service_order = ServiceOrder.find params[:id]
+    @service_order.in_progress!
+  end
+
   private 
 
     def new_service_order_params
