@@ -1,23 +1,31 @@
 <h2> Configurações </h2>
 
-* Versão do Ruby Utilizada: Ruby 3.1.2
-* Versão do framework Rails: 7.0.4
-* Ferramenta para testes: Rspec
-* Test driver: Capybara
-
-
-Antes de inicializar a aplicação, rode o comando 'rails db:seed' no seu terminal para popular o banco de dados com alguns models pré-cadastrados, sendo essencial para ver e testar as funcionalidades do sistema.
-Você terá acesso a dois logins de usuários, um comum e um administrador, na qual o administrador possui alguns acessos a mais do que o usuário comum. Ao clicar no botão 'Fazer Login' localizado na barra de navegação da página inicial, você poderá utilizar as credenciais para se autenticar:
+<ul>
+  <li> Versão do Ruby Utilizada: Ruby 3.1.2 </li>
+  <li> Versão do framework Rails: 7.0.4 </li>
+  <li> Ferramenta para testes: Rspec </li>
+  <li> Test driver: Capybara </li>
+</ul>
 
 <p>
-<h3> Usuário comum </h3>
-  * Email: common@sistemadefrete.com.br <br>
-  * Senha: 1234567
+  Antes de inicializar a aplicação, rode o comando 'rails db:seed' no seu terminal para popular o banco de dados com alguns models pré-cadastrados, sendo essencial para ver e testar as funcionalidades do sistema. Caso precise reiniciar o banco de dados, devido
+  a dependência de alguns models associados, é necessário executar primeiro rails db:drop seguido de rails db:setup, para não enfrentar erros com foreign key constraints.
+  Você terá acesso a dois logins de usuários, um comum e um administrador, na qual o administrador possui alguns acessos a mais do que o usuário comum. Ao clicar no botão 'Fazer Login' localizado na barra de navegação da página inicial, você poderá utilizar   as credenciais para se autenticar:
+</p>
+
+<p>
+  <h3> Usuário comum </h3>
+    <ul>
+      <li> Email: common@sistemadefrete.com.br </li>
+      <li> Senha: 1234567 </li>
+    <ul>
 </p>
 
 <h3> Usuário administrador </h3>
-  * Email: admin@sistemadefrete.com.br <br>
-  * Senha: 1234567
+    <ul>
+      <li> Email: admin@sistemadefrete.com.br </li>
+      <li> Senha: 1234567 </li>
+    <ul>
 </p>
 
 
