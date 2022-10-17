@@ -4,7 +4,7 @@ class ServiceOrder < ApplicationRecord
 
   has_one :started, class_name: 'StartedServiceOrder', dependent: :nullify
   has_one :finished, class_name: 'FinishedServiceOrder', dependent: :nullify
-  before_validation :generate_random_package_code
+  before_validation :generate_random_package_code, on: :create
   validates_presence_of VALIDATABLE_ATTRS
   enum :status, { pending: 0, in_progress: 1, finished: 2 }
 
