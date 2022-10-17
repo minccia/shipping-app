@@ -17,7 +17,7 @@
           </p>
           <p>
             <dt> <%= StartedServiceOrder.human_attribute_name 'due_date' %> </dt>
-            <dd> <%= so.started.due_date.strftime("%d/%m/%Y") %>
+            <dd> <%= so.started.due_date.hours.from_now.strftime("%d/%m/%Y") %>
           </p>
         <% end %>
 
