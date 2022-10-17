@@ -5,6 +5,7 @@ class FinishedServiceOrder < ApplicationRecord
   enum :status, { in_time: 0, late: 10 }
 
   def delivery_was_late?
-    self.delivery_date.strftime("%d/%m/%Y") > self.service_order.started.due_date.hours.from_now.strftime("%d/%m/%Y")
+    started_so = self.service_order.started
+    self.delivery_date > (started_so.created_at + started_so.due_date.hours)
   end
 end

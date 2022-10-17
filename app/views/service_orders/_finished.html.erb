@@ -1,0 +1,9 @@
+<h3> <%= t('service_order_finished') %> </h3>
+<%= FinishedServiceOrder.human_attribute_name 'delivery_date' %>:
+<%= service_order.finished.delivery_date.strftime("%d/%m/%Y") %>
+<% if service_order.finished.delivery_was_late? %>
+  <p>
+    <%= LatenessExplanation.model_name.human %>:
+    <%= service_order.finished.lateness_explanation.justification %>
+  </p>
+<% end %>

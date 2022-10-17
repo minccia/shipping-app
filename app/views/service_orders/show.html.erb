@@ -44,12 +44,7 @@
       <%= render 'in_progress', service_order: @service_order %>
     <% end %>
     <% if @service_order.finished? %>
-      <h3> <%= t('service_order_finished') %> </h3>
-      <%= FinishedServiceOrder.human_attribute_name 'delivery_date' %>:
-      <%= @service_order.finished.delivery_date.strftime("%d/%m/%Y") %>
-      <% if @service_order.finished.delivery_was_late? %>
-        <%= @service_order.finished.lateness_explanation.justification %>
-      <% end %>
+      <%= render 'finished', service_order: @service_order %>
     <% end %>
   </main>
 </article>

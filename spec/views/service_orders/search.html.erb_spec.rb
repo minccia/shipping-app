@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe 'service_orders/search.html.erb' do 
   context 'User search for service orders on application nav' do 
-    include ActiveSupport::Testing::TimeHelpers
 
     it 'with success' do 
       allow(SecureRandom).to receive(:alphanumeric).with(15).and_return('ABCDE12345678')    
@@ -94,7 +93,7 @@ describe 'service_orders/search.html.erb' do
                                 )
 
       FinishedServiceOrder.create!(service_order: service_order, delivery_date: 4.days.from_now)
-      binding.b
+
       visit root_path 
       fill_in 'Buscar ordem de serviço', with: 'ABC'
       click_on 'Buscar'

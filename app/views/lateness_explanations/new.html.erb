@@ -1,0 +1,13 @@
+<article>
+  <main>
+    <%= form_with model: [:service_order, @lateness_explanation] do |f| %>
+      <p>
+        <%= f.label :justification %>
+        <%= f.text_area :justification %>
+      </p>
+      <p>
+        <%= f.submit t('buttons.submit') %>
+      </p>
+    <% end %>
+  </main>
+</article>

@@ -45,19 +45,12 @@ class ServiceOrdersController < ApplicationController
   end
 
   def finish 
-    finished_so = FinishedServiceOrder.new(service_order: @service_order,
+    finished_so = FinishedServiceOrder.create(service_order: @service_order,
                                            delivery_date: Date.today)
-
-    if finished_so.save 
-      @service_order.finished!
-      @service_order.started.vehicle.available!
-
-      if finished_so.delivery_was_late?
-        return redirect_to new_lateness_explanation_path
-      else  
-        return redirect_to service_order_url(@service_order.id), notice: t('service_order_finished_with_success')
-      end
-    end
+    @service_order.finished!
+    @service_order.started.vehicle.available!
+    return redirect_to new_service_order_lateness_explanation_path(@service_order.id) if finished_so.delivery_was_late?
+    return redirect_to service_order_url(@service_order.id), notice: t('service_order_finished_with_success')
   end
 
   def search 

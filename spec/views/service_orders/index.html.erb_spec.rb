@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe 'service_orders/index.html.erb' do 
+  include ActiveSupport::Testing::TimeHelpers
   let(:user) { FactoryBot.create(:user) }
 
   context 'Common user view pending service orders' do 
@@ -112,7 +113,7 @@ describe 'service_orders/index.html.erb' do
       expect(page).not_to have_content 'Status: Pendente'
     end
 
-    it 'and finishes it' do 
+    it 'and finishes it in time' do 
       service_order = FactoryBot.create(:service_order, status: :in_progress, distance: 80, package_weight: 20)
       trans_mod = TransportModality.create!(name: 'Ghetto', 
                                             maximum_distance: 100,
@@ -147,6 +148,50 @@ describe 'service_orders/index.html.erb' do
       expect(page).to have_content 'Ordem de serviço encerrada com sucesso'
       expect(page).to have_content 'Ordem de serviço encerrada'
       expect(page).to have_content "Data de encerramento: #{ Date.today.strftime("%d/%m/%Y") }"
+      expect(page).not_to have_content "Motivo do atraso:"
+    end
+
+    it 'and finishes it too late' do 
+      service_order = FactoryBot.create(:service_order, status: :in_progress, distance: 80, package_weight: 20)
+      trans_mod = TransportModality.create!(name: 'Ghetto', 
+                                            maximum_distance: 100,
+                                            maximum_weight: 25,
+                                            fee: 12.9
+                                          )
+      vehicle = Vehicle.create!(
+                                license_plate: 'ABC1D23',
+                                brand_name: 'Fiat',
+                                vehicle_type: 'Van',
+                                fabrication_year: '2010',
+                                maximum_capacity: '500',
+                                transport_modality: trans_mod,
+                                status: :in_operation
+                              )
+      TableEntry.create!(first_interval: 11, second_interval: 20, value: 0.50, weight_price_table_id: trans_mod.weight_price_table.id)
+      TableEntry.create!(first_interval: 60, second_interval: 80, value: 20, distance_price_table_id: trans_mod.distance_price_table.id)                                         
+      TableEntry.create!(first_interval: 50, second_interval: 100, value: 72, freight_table_id: trans_mod.freight_table.id)
+
+      value = trans_mod.so_execution_price(service_order)
+      due_date = trans_mod.so_execution_due_date(service_order)
+
+      StartedServiceOrder.create!(service_order: service_order, vehicle: vehicle,
+                                  transport_modality: trans_mod, due_date: due_date,
+                                  value: value
+                                )
+
+      travel_to 10.days.from_now do 
+        login_as user, scope: :user 
+        visit service_order_path(service_order.id)
+        click_on 'Encerrar ordem de serviço'
+      end
+
+      fill_in 'Motivo do atraso', with: 'Tirei uma soneca ferrada no serviço'
+      click_on 'Enviar'
+
+      expect(page).to have_content 'Ordem de serviço encerrada com sucesso'
+      expect(page).to have_content 'Ordem de serviço encerrada'
+      expect(page).to have_content "Data de encerramento: #{ 10.days.from_now.strftime("%d/%m/%Y") }"
+      expect(page).to have_content "Motivo do atraso: Tirei uma soneca ferrada no serviço"
     end
   end
   

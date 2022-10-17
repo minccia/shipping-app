@@ -17,6 +17,8 @@ pt-BR:
         one: 'Tabela de preços por Distância'
       freight_table:
         one: 'Tabela de prazos'
+      lateness_explanation:
+        one: 'Motivo do atraso'
     attributes:
       service_order:
         sender_full_address: 'Endereço do remetente'
@@ -78,6 +80,8 @@ pt-BR:
         transport_modality_id: 'Modalidade de transporte'
       finished_service_order:
         delivery_date: 'Data de encerramento'
+      lateness_explanation:
+        justification: 'Motivo do atraso'
 
         
         

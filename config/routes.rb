@@ -6,9 +6,8 @@ Rails.application.routes.draw do
     get 'search', on: :collection
     get 'start', on: :member
     get 'finish', on: :member
+    resources :lateness_explanations, only: %i[new create]
   end
-
-  resources :lateness_explanations, only: %i[new create]
   
   resources :transport_modalities, only: %i[index create show edit update]
 
