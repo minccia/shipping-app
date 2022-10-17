@@ -12,18 +12,18 @@
 
         <% if so.in_progress? %>
           <p>
-            <dt> <%= StartedServiceOrder.human_attribute_name 'vehicle' %> </dt>
+            <dt> <%= StartedServiceOrder.human_attribute_name 'vehicle' %>: </dt>
             <dd> <%= so.started.vehicle.license_plate %> </dd>
           </p>
           <p>
-            <dt> <%= StartedServiceOrder.human_attribute_name 'due_date' %> </dt>
+            <dt> <%= StartedServiceOrder.human_attribute_name 'due_date' %>: </dt>
             <dd> <%= so.started.due_date.hours.from_now.strftime("%d/%m/%Y") %>
           </p>
         <% end %>
 
         <% if so.finished? %>
           <p>
-            <dt> <%= FinishedServiceOrder.human_attribute_name 'delivery_date' %> </dt>
+            <dt> <%= FinishedServiceOrder.human_attribute_name 'delivery_date' %>: </dt>
             <dd> <%= so.finished.delivery_date.strftime("%d/%m/%Y") %> </dd>
           </p>
         <% end %>
