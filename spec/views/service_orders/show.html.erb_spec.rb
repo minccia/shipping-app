@@ -53,20 +53,6 @@ describe 'service_orders/show.html.erb' do
   end
 
   context 'User initiate service order' do 
-    it 'if pending' do 
-      service_order = FactoryBot.create(:service_order, status: :finished)
-      trans_mod = FactoryBot.create(:transport_modality, name: 'Ghetto Expresso')
-
-      login_as user, scope: :user
-      visit service_order_path(service_order.id)
-      
-      expect(page).not_to have_content 'Iniciar ordem de serviço'
-      expect(page).not_to have_content 'Orçamentos'
-      expect(page).not_to have_content 'Ghetto Expresso'
-      expect(page).not_to have_content 'Selecione a forma de entrega'
-      expect(page).not_to have_button 'Enviar'
-    end
-
     it 'through cotations section' do 
       service_order = FactoryBot.create(:service_order, distance: 80, package_weight: 20)
       trans_mod = TransportModality.create!(name: 'Ghetto', 

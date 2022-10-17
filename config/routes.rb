@@ -2,8 +2,12 @@ Rails.application.routes.draw do
   devise_for :users
   root "home#index"
   resources :service_orders, only: %i[index new create show] do 
+    get 'in_operation', on: :collection
     get 'start', on: :member
+    get 'finish', on: :member
   end
+
+  resources :lateness_explanations, only: %i[new create]
   
   resources :transport_modalities, only: %i[index create show edit update]
 

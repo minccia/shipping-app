@@ -51,3 +51,8 @@ pt-BR:
   due_date: 'Prazo'
   service_order_in_progress: 'Ordem de serviço em andamento'
   service_order_initiated_with_success: 'Ordem de serviço iniciada com sucesso'
+  orders_in_progress: 'Ordens em andamento'
+  pending_service_orders: 'Ordens de serviço pendentes'
+  finish_service_order: 'Encerrar ordem de serviço'
+  service_order_finished_with_success: 'Ordem de serviço encerrada com sucesso'
+  service_order_finished: 'Ordem de serviço encerrada'

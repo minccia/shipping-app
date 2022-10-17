@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_16_234547) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_17_014833) do
   create_table "distance_price_tables", force: :cascade do |t|
     t.integer "transport_modality_id"
     t.datetime "created_at", null: false
@@ -18,11 +18,28 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_16_234547) do
     t.index ["transport_modality_id"], name: "index_distance_price_tables_on_transport_modality_id"
   end
 
+  create_table "finished_service_orders", force: :cascade do |t|
+    t.integer "service_order_id", null: false
+    t.date "delivery_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "status", default: 0
+    t.index ["service_order_id"], name: "index_finished_service_orders_on_service_order_id"
+  end
+
   create_table "freight_tables", force: :cascade do |t|
     t.integer "transport_modality_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["transport_modality_id"], name: "index_freight_tables_on_transport_modality_id"
+  end
+
+  create_table "lateness_explanations", force: :cascade do |t|
+    t.string "justification"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "finished_service_order_id"
+    t.index ["finished_service_order_id"], name: "index_lateness_explanations_on_finished_service_order_id"
   end
 
   create_table "service_orders", force: :cascade do |t|
@@ -116,7 +133,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_16_234547) do
   end
 
   add_foreign_key "distance_price_tables", "transport_modalities"
+  add_foreign_key "finished_service_orders", "service_orders"
   add_foreign_key "freight_tables", "transport_modalities"
+  add_foreign_key "lateness_explanations", "finished_service_orders"
   add_foreign_key "started_service_orders", "service_orders"
   add_foreign_key "started_service_orders", "transport_modalities"
   add_foreign_key "started_service_orders", "vehicles"

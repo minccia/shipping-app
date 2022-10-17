@@ -1,12 +1,17 @@
 class ServiceOrdersController < ApplicationController
   before_action :authenticate_user!, only: %i[index show]
   before_action :require_admin, only: %i[new create]
-  before_action :fetch_service_order, only: %i[show start]
+  before_action :fetch_service_order, only: %i[show start finish]
   before_action :fetch_transport_modality, only: %i[start]
   before_action :alocate_vehicle, only: %i[start]
   
   def index 
     @service_orders = ServiceOrder.pending
+  end
+
+  def in_operation 
+    @service_orders = ServiceOrder.in_progress
+    render :index
   end
 
   def new 
@@ -34,7 +39,24 @@ class ServiceOrdersController < ApplicationController
                                         )
     if started_so.save 
       @service_order.in_progress!
+      @vehicle.in_operation!
       return redirect_to service_order_url(@service_order.id), notice: t('service_order_initiated_with_success')
+    end
+  end
+
+  def finish 
+    finished_so = FinishedServiceOrder.new(service_order: @service_order,
+                                           delivery_date: Date.today)
+
+    if finished_so.save 
+      @service_order.finished!
+      @service_order.started.vehicle.available!
+      
+      if finished_so.delivery_was_late?
+        return redirect_to new_lateness_explanation_path
+      else  
+        return redirect_to service_order_url(@service_order.id), notice: t('service_order_finished_with_success')
+      end
     end
   end
 
@@ -50,7 +72,6 @@ class ServiceOrdersController < ApplicationController
 
     def alocate_vehicle
       @vehicle = @transport_modality.vehicles.available.sample
-      @vehicle.in_operation!
     end
 
     def new_service_order_params

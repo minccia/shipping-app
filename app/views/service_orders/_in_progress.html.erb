@@ -18,4 +18,5 @@
       <dd> <%= number_to_currency(@service_order.started.value) %> </dd>
     </p>
   </dl>
+  <%= link_to t('finish_service_order'), finish_service_order_path  %>
 </section>

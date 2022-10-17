@@ -1,6 +1,7 @@
 <article>
   <header>
     <%= link_to t('buttons.create_service_order'), new_service_order_path %>
+    <%= link_to t('orders_in_progress'), in_operation_service_orders_path%>
   </header>
   <main>
     <% if @service_orders.any? %>
@@ -22,6 +23,10 @@
           <p>
             <dt> <%= ServiceOrder.human_attribute_name 'distance' %>: </dt>
             <dd> <%= so.distance %> <%= t 'units.meters' %> </dd>
+          </p>
+          <p>
+            <dt> <%= t('activerecord.attributes.service_order.status.one') %>: </dt>
+            <dd> <%= t so.status, scope: [:activerecord, :attributes, :service_order, :status] %> </dd>
           </p>
         </dl>
       <% end %>
