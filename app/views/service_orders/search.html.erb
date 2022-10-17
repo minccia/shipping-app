@@ -1,0 +1,34 @@
+<article>
+  <main>
+    <% if @found_service_orders.any? %>
+      <% @found_service_orders.each do |so| %>
+        <h3> <%= so.name_and_code %> </h3>
+        <dl>
+          <p>
+            <dt> <%= ServiceOrder.human_attribute_name 'created_at' %>: </dt>
+            <dd> <%= so.created_at.strftime("%d/%m/%Y") %> </dd>
+          </p>
+        </dl>
+
+        <% if so.in_progress? %>
+          <p>
+            <dt> <%= StartedServiceOrder.human_attribute_name 'vehicle' %> </dt>
+            <dd> <%= so.started.vehicle.license_plate %> </dd>
+          </p>
+          <p>
+            <dt> <%= StartedServiceOrder.human_attribute_name 'due_date' %> </dt>
+            <dd> <%= so.started.due_date.strftime("%d/%m/%Y") %>
+          </p>
+        <% end %>
+
+        <% if so.finished? %>
+          <p>
+            <dt> <%= FinishedServiceOrder.human_attribute_name 'delivery_date' %> </dt>
+            <dd> <%= so.finished.delivery_date.strftime("%d/%m/%Y") %> </dd>
+          </p>
+        <% end %>
+        
+      <% end %>
+    <% end %>
+  </main>
+</article>

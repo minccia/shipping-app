@@ -51,12 +51,22 @@ class ServiceOrdersController < ApplicationController
     if finished_so.save 
       @service_order.finished!
       @service_order.started.vehicle.available!
-      
+
       if finished_so.delivery_was_late?
         return redirect_to new_lateness_explanation_path
       else  
         return redirect_to service_order_url(@service_order.id), notice: t('service_order_finished_with_success')
       end
+    end
+  end
+
+  def search 
+    @searched_term = params[:query]
+    @found_service_orders = ServiceOrder.where("package_code LIKE ?", "%#{@searched_term}%")
+
+    if @found_service_orders.empty?
+      flash.notice = t('no_service_orders_found')
+      return redirect_to root_url
     end
   end
 

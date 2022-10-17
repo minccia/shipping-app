@@ -1,7 +1,13 @@
 <article>
   <header>
   </header>
-
+    <section id='search_service_order'>
+      <%= form_with url: search_service_orders_path, method: :get do |f| %>
+      <%= f.label :query, t('buttons.search_service_order') %>
+      <%= f.text_field :query %>
+      <%= f.submit t('buttons.search') %>
+      <% end %>
+    </section>
   <main>
   </main>
 </article>

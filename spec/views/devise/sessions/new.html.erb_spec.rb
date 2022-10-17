@@ -10,11 +10,12 @@ describe 'devise/sessions/new.html.erb' do
       visit root_path 
       click_on 'Fazer Login'
   
-      within 'form' do
+      within 'form' do 
         fill_in 'Email', with: 'paola@sistemadefrete.com.br' 
         fill_in 'Senha', with: 'password'
         click_on 'Fazer Login'
       end
+
       within 'nav' do 
         expect(page).not_to have_link 'Fazer Login'
         expect(page).to have_button 'Sair'
@@ -29,11 +30,12 @@ describe 'devise/sessions/new.html.erb' do
       
       visit new_user_session_path
   
-      within 'form' do
+      within 'form' do 
         fill_in 'Email', with: 'paola@sistemadefrete.com.br' 
         fill_in 'Senha', with: 'password'
         click_on 'Fazer Login'
       end
+  
       within 'nav' do 
         click_on 'Sair'
       end

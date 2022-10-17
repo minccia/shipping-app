@@ -56,3 +56,4 @@ pt-BR:
   finish_service_order: 'Encerrar ordem de serviço'
   service_order_finished_with_success: 'Ordem de serviço encerrada com sucesso'
   service_order_finished: 'Ordem de serviço encerrada'
+  no_service_orders_found: 'Nenhuma ordem de serviço foi encontrada'

@@ -15,14 +15,14 @@
       <%= link_to t('buttons.home'), root_path %> |
       <%= link_to t('activerecord.models.service_order.many'), service_orders_path %> |
       <%= link_to t('activerecord.models.vehicle.other'), vehicles_path %> |
-      
+
       <% if user_signed_in? %>
         <%= link_to t('activerecord.models.transport_modality.many'), transport_modalities_path %>
         <%= button_to t('buttons.sign_out'), destroy_user_session_path, method: :delete %>
       <% else %>
         <%= link_to t('buttons.login'), new_user_session_path %>
       <% end %>
-
+    </nav>
     <section>
       <%= notice %>
       <%= alert %> 
