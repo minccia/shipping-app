@@ -26,6 +26,12 @@
             <dt> <%= FinishedServiceOrder.human_attribute_name 'delivery_date' %>: </dt>
             <dd> <%= so.finished.delivery_date.strftime("%d/%m/%Y") %> </dd>
           </p>
+          <% if so.finished.delivery_was_late? %>
+          <p>
+            <dt> <%= LatenessExplanation.model_name.human %>: </dt>
+            <dd> <%= so.finished.lateness_explanation.justification %> </dd>
+          </p>
+          <% end %>
         <% end %>
         
       <% end %>
