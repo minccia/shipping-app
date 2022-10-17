@@ -41,18 +41,7 @@
       <%= render 'start_service_order', service_order: @service_order %>
     <% end %>
     <% if @service_order.in_progress? %>
-      <section>
-        <h3> <%= t('service_order_in_progress') %> </h3>
-        <dl>
-          <dt> <%= TransportModality.model_name.human %>: </dt>
-          <dd> <%= @service_order.started.transport_modality.name %> </dd>
-          <dt> <%= StartedServiceOrder.human_attribute_name 'vehicle' %>: </dt>
-          <dd> <%= @service_order.started.vehicle.license_plate %>
-          <dt> <%= StartedServiceOrder.human_attribute_name 'due_date' %>: </dt>
-          <dd> <%= @service_order.started.due_date.hours.from_now.strftime("%d/%m/%Y") %> </dd>
-          <dt> <%= StartedServiceOrder.human_attribute_name 'value' %>: </dt>
-          <dd> <%= number_to_currency(@service_order.started.value) %> </dd>
-      </section>
+      <%= render 'in_progress', service_order: @service_order %>
     <% end %>
   </main>
 </article>

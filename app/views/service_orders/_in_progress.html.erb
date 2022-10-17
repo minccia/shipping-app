@@ -1,0 +1,21 @@
+<section>
+  <h3> <%= t('service_order_in_progress') %> </h3>
+  <dl>
+    <p>
+      <dt> <%= TransportModality.model_name.human %>: </dt>
+      <dd> <%= @service_order.started.transport_modality.name %> </dd>
+    </p>
+    <p>
+      <dt> <%= StartedServiceOrder.human_attribute_name 'vehicle' %>: </dt>
+      <dd> <%= @service_order.started.vehicle.license_plate %>
+    </p>
+    <p>
+      <dt> <%= StartedServiceOrder.human_attribute_name 'due_date' %>: </dt>
+      <dd> <%= @service_order.started.due_date.hours.from_now.strftime("%d/%m/%Y") %> </dd>
+    </p>
+    <p>
+      <dt> <%= StartedServiceOrder.human_attribute_name 'value' %>: </dt>
+      <dd> <%= number_to_currency(@service_order.started.value) %> </dd>
+    </p>
+  </dl>
+</section>
