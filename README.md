@@ -30,6 +30,7 @@
 
 <h2> Bugs conhecidos e considerações </h2>
   - O código da ordem de serviço é gerado novamente quando ela é iniciada/encerrada, o que não deveria ocorrer. (A solução está nos vídeos mas ainda não tive tempo de assistir o vídeo que corrige o problema)
+  - Não consegui implementar os motivos de atraso da ordem de serviço a tempo
   - Algumas coisas, principalmente em questão de validação, poderiam estar melhores, mas por falta de tempo tentei entregar as funcionalidades essenciais do sistema, e deixar a estética do site e pequenos detalhes para incrementar depois.
 
 <h2> Specs do sistema </h2>
