@@ -1,6 +1,27 @@
 require 'rails_helper'
 
-RSpec.describe ServiceOrder, type: :model do
+RSpec.describe FinishedServiceOrder, type: :model do
+  context '#valid?' do 
+    it 'false when service_order_id is empty' do 
+      finished_so = FinishedServiceOrder.new(service_order: nil, delivery_date: 1.day.from_now)
+
+      finished_so.save 
+
+      expect(finished_so).not_to be_valid
+      expect(finished_so.errors.include? :service_order)
+    end
+
+    it 'false when service_order_id is empty' do 
+      service_order = FactoryBot.create(:service_order)
+      finished_so = FinishedServiceOrder.new(service_order: service_order)
+
+      finished_so.save 
+
+      expect(finished_so).not_to be_valid
+      expect(finished_so.errors.include? :delivery_date)
+    end
+  end
+
   context '#delivery_was_late?' do 
     it 'true when delvery_date exceeds started service order due_date' do 
       service_order = FactoryBot.create(:service_order, status: :in_progress, distance: 80, package_weight: 20)

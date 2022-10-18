@@ -2,6 +2,8 @@ class FinishedServiceOrder < ApplicationRecord
   belongs_to :service_order
   has_one :lateness_explanation
 
+  validates :delivery_date, presence: true 
+  
   enum :status, { in_time: 0, late: 10 }
 
   def delivery_was_late?
