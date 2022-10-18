@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+ body{
+    background-image: url(/assets/frog_car.jpeg);
+    background-repeat: repeat;
+    background-size: 600px;
+    background-attachment: fixed;
+ }
