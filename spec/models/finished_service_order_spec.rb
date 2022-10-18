@@ -11,7 +11,7 @@ RSpec.describe FinishedServiceOrder, type: :model do
       expect(finished_so.errors.include? :service_order)
     end
 
-    it 'false when service_order_id is empty' do 
+    it 'false when delivery_date is empty' do 
       service_order = FactoryBot.create(:service_order)
       finished_so = FinishedServiceOrder.new(service_order: service_order)
 
