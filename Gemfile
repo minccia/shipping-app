@@ -8,6 +8,10 @@ gem "sqlite3", "~> 1.4"
 gem "puma", "~> 5.0"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "devise"
+gem "importmap-rails"
+gem "sprockets"
+gem "sassc-rails"
+gem "bootstrap-sass"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
