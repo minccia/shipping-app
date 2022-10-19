@@ -73,3 +73,16 @@ ServiceOrder.create!(
                      receiver_zip_code: '60123456',
                      distance: 80
                     )
+    
+ServiceOrder.create!(
+                     sender_full_address: 'Rua Andréia Napolitano',
+                     sender_zip_code: '60337666',
+                     package_height: 50,
+                     package_width: 30,
+                     package_depth: 20,
+                     package_weight: 10,
+                     receiver_name: 'Erika Campos',
+                     receiver_full_address: 'Rua das Quintadas, 95',
+                     receiver_zip_code: '60213213',
+                     distance: 60
+                    )    

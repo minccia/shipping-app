@@ -1,16 +1,18 @@
 <% if current_user.admin? %>
   <%= form_with model: table_entry do |f| %>
-    <%= f.label :first_interval %>
-    <%= f.number_field :first_interval %> &nbsp;&nbsp;
-  
-    <%= f.label :second_interval %>
-    <%= f.number_field :second_interval %> &nbsp;&nbsp;
-  
-    <%= f.label :value %>
-    <%= f.number_field :value, step: 0.5 %>
-  
-    <%= f.hidden_field table, value: table_id %>
-  
-    <%= f.submit t('buttons.add') %>
+    <div class="form-group">
+      <%= f.label :first_interval %>
+      <%= f.number_field :first_interval %> &nbsp;&nbsp;
+    
+      <%= f.label :second_interval %>
+      <%= f.number_field :second_interval %> &nbsp;&nbsp;
+    
+      <%= f.label :value %>
+      <%= f.number_field :value, step: 0.5 %>
+    
+      <%= f.hidden_field table, value: table_id %>
+    
+      <%= f.submit t('buttons.add'), class:"btn btn-success btn-sm" %>
+    </div>
   <% end %>
 <% end %>

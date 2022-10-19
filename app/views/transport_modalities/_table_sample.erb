@@ -13,7 +13,7 @@
             <td> <strong> <%= table_entry_hours_and_days(entry.value) %> </strong> </td> 
           <% end %>
           <% if current_user.admin? %>
-            <td> <%= link_to t('buttons.edit'), edit_table_entry_path(entry.id) %> </td>
+            <td> <%= link_to t('buttons.edit'), edit_table_entry_path(entry.id), class:"btn btn-primary btn-sm" %> </td>
           <% end %>
         </tr>
       <% end %>

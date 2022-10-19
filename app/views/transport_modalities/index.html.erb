@@ -6,8 +6,8 @@
     <% if @transport_modalities.any? %>
       <h2> <%= t 'modalities' %> </h2>
       <% @transport_modalities.each do |trans_mod|  %>
-        <table>
-          <thead>
+        <table class="table table-dark table-striped table-hover">
+          <thead class="thead">
             <tr>
               <th> <%= TransportModality.human_attribute_name 'name' %> &nbsp;&nbsp; </th>
               <th> <%= TransportModality.human_attribute_name 'minimum_distance_abbr' %> &nbsp;&nbsp; </th>

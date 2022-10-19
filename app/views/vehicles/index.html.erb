@@ -1,13 +1,13 @@
 <article>
   <header>
     <% if current_user.admin? %>
-      <%= link_to "#{ t 'new_masculine'} #{ Vehicle.model_name.human }", new_vehicle_path %>
+      <%= link_to "#{ t 'new_masculine'} #{ Vehicle.model_name.human }", new_vehicle_path, class:"btn btn-primary btn-sm"%>
     <% end %> 
 
     <%= form_with url: search_vehicles_path, method: :get do |f| %>
       <%= f.label :query, t('buttons.search_vehicle') %>
       <%= f.text_field :query %>
-      <%= f.submit t('buttons.search') %>
+      <%= f.submit t('buttons.search'), class:"btn btn-success btn-sm" %>
     <% end %>
   </header>
 </article>

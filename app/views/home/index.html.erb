@@ -3,9 +3,11 @@
   </header>
     <section id='search_service_order'>
       <%= form_with url: search_service_orders_path, method: :get do |f| %>
-      <%= f.label :query, t('buttons.search_service_order') %>
-      <%= f.text_field :query %>
-      <%= f.submit t('buttons.search') %>
+      <div class="form-inline my-2 my-lg-0">
+        <%= f.label :query, t('buttons.search_service_order') %>
+        <%= f.text_field :query, class:"form-control mr-sm-2" %>
+        <%= f.submit t('buttons.search'), class:"btn btn-success my-2 my-sm-0" %>
+      </div>
       <% end %>
     </section>
   <main>

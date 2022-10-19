@@ -1,13 +1,15 @@
 <article>
   <main>
     <%= form_with model: [:service_order, @lateness_explanation] do |f| %>
-      <p>
-        <%= f.label :justification %>
-        <%= f.text_area :justification %>
-      </p>
-      <p>
-        <%= f.submit t('buttons.submit') %>
-      </p>
+      <div class="form-group">
+        <p>
+          <%= f.label :justification %>
+          <%= f.text_area :justification, class:"form_control"%>
+        </p>
+        <p>
+          <%= f.submit t('buttons.submit'), class: "btn btn-primary" %>
+        </p>
+      </div>
     <% end %>
   </main>
 </article>
