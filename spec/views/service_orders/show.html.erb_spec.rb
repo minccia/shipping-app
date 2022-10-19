@@ -107,5 +107,29 @@ describe 'service_orders/show.html.erb' do
       expect(page).to have_content "Data estimada de entrega: #{ 72.hours.from_now.strftime("%d/%m/%Y") }"
       expect(page).to have_content 'Valor: R$ 72,90'
     end
+
+    it 'and there are no vehicles available' do
+      service_order = FactoryBot.create(:service_order, distance: 80, package_weight: 20)
+      trans_mod = TransportModality.create!(name: 'Ghetto', 
+                                            maximum_distance: 100,
+                                            maximum_weight: 25,
+                                            fee: 12.9
+                                          )
+      vehicle = FactoryBot.create(:vehicle, transport_modality: trans_mod, status: :on_maintenance)
+
+      TableEntry.create!(first_interval: 11, second_interval: 20, value: 0.50, weight_price_table_id: trans_mod.weight_price_table.id)
+      TableEntry.create!(first_interval: 60, second_interval: 80, value: 20, distance_price_table_id: trans_mod.distance_price_table.id)                                         
+      TableEntry.create!(first_interval: 50, second_interval: 100, value: 72, freight_table_id: trans_mod.freight_table.id)
+  
+      login_as user, scope: :user
+      visit service_order_path(service_order.id)
+  
+      select 'Ghetto', from: 'Selecione a forma de entrega'
+      click_on 'Enviar'
+
+      expect(page).to have_content 'Não há veículos disponíveis na modalidade Ghetto para iniciar a ordem de serviço'
+      expect(page).to have_content 'Iniciar ordem de serviço'
+      expect(page).to have_content 'Orçamentos'
+    end
   end
 end

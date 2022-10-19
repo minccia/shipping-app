@@ -58,3 +58,5 @@ pt-BR:
   service_order_finished: 'Ordem de serviço encerrada'
   no_service_orders_found: 'Nenhuma ordem de serviço foi encontrada'
   justification_cant_be_blank: 'Motivo do atraso não pode ficar em branco'
+  no_vehicles_available: "Não há veículos disponíveis na modalidade %{trans_mod} para iniciar a ordem de serviço"
+  service_order_not_started: 'Ordem de serviço não foi iniciada'

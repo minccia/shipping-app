@@ -3,7 +3,7 @@ class ServiceOrdersController < ApplicationController
   before_action :require_admin, only: %i[new create]
   before_action :fetch_service_order, only: %i[show start finish]
   before_action :fetch_transport_modality, only: %i[start]
-  before_action :alocate_vehicle, only: %i[start]
+  before_action :ensure_transport_modality_has_available_vehicles_before_alocating, only: %i[start]
   
   def index 
     @service_orders = ServiceOrder.pending
@@ -42,6 +42,7 @@ class ServiceOrdersController < ApplicationController
       @vehicle.in_operation!
       return redirect_to service_order_url(@service_order.id), notice: t('service_order_initiated_with_success')
     end
+    return redirect_to service_order_url(@service_order.id), notice: t('service_order_not_started')
   end
 
   def finish 
@@ -49,7 +50,10 @@ class ServiceOrdersController < ApplicationController
                                            delivery_date: Date.today)
     @service_order.finished!
     @service_order.started.vehicle.available!
-    return redirect_to new_service_order_lateness_explanation_path(@service_order.id) if finished_so.delivery_was_late?
+    if finished_so.delivery_was_late?
+      return redirect_to new_service_order_lateness_explanation_url(@service_order.id)
+    end
+
     return redirect_to service_order_url(@service_order.id), notice: t('service_order_finished_with_success')
   end
 
@@ -73,8 +77,14 @@ class ServiceOrdersController < ApplicationController
       @transport_modality = TransportModality.find params[:transport_modality_id]
     end
 
-    def alocate_vehicle
-      @vehicle = @transport_modality.vehicles.available.sample
+    def ensure_transport_modality_has_available_vehicles_before_alocating
+      vehicles = @transport_modality.vehicles.available 
+      if vehicles.any? 
+        @vehicle = vehicles.sample
+      else  
+        flash.notice = t('no_vehicles_available', trans_mod: @transport_modality.name)
+        return redirect_to service_order_url(@service_order.id)
+      end
     end
 
     def new_service_order_params
