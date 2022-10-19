@@ -25,7 +25,7 @@
       <%= f.collection_select :transport_modality_id, TransportModality.all, :id, :name, prompt: true %>
     </p>
     <p>
-      <%= f.submit t('buttons.submit') %>
+      <%= f.submit t('buttons.submit'), class:"btn btn-success btn-sm" %>
     </p>
   </div>
 <% end %>
