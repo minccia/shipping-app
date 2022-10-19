@@ -33,10 +33,9 @@ class ServiceOrdersController < ApplicationController
   def start 
     value = @transport_modality.so_execution_price(@service_order)
     due_date = @transport_modality.so_execution_due_date(@service_order).to_i
-    started_so = StartedServiceOrder.new(service_order: @service_order, vehicle: @vehicle,
-                                         transport_modality: @transport_modality, due_date: due_date,
-                                         value: value
-                                        )
+    started_so = @service_order.build_started(transport_modality: @transport_modality,
+                                              vehicle: @vehicle, due_date: due_date, value: value)
+ 
     if started_so.save 
       @service_order.in_progress!
       @vehicle.in_operation!
@@ -46,14 +45,14 @@ class ServiceOrdersController < ApplicationController
   end
 
   def finish 
-    finished_so = FinishedServiceOrder.create(service_order: @service_order,
-                                           delivery_date: Date.today)
+    finished_so = @service_order.build_finished(delivery_date: Date.today)
+  
     @service_order.finished!
     @service_order.started.vehicle.available!
+    
     if finished_so.delivery_was_late?
       return redirect_to new_service_order_lateness_explanation_url(@service_order.id)
     end
-
     return redirect_to service_order_url(@service_order.id), notice: t('service_order_finished_with_success')
   end
 
