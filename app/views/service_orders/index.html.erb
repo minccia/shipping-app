@@ -1,7 +1,7 @@
 <article>
   <header>
     <%= link_to t('buttons.create_service_order'), new_service_order_path, class:"btn btn-primary" %>
-    <%= link_to t('orders_in_progress'), in_operation_service_orders_path, class: "btn btn-primary" %>
+    <%= link_to t('orders_in_progress'), in_progress_service_orders_path, class: "btn btn-primary" %>
   </header>
   <main>
     <% if @service_orders.any? %>

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root "home#index"
   resources :service_orders, only: %i[index new create show] do 
-    get 'in_operation', on: :collection
+    get 'in_progress', on: :collection
     get 'search', on: :collection
     get 'start', on: :member
     get 'finish', on: :member

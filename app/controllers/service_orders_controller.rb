@@ -9,7 +9,7 @@ class ServiceOrdersController < ApplicationController
     @service_orders = ServiceOrder.pending
   end
 
-  def in_operation 
+  def in_progress
     @service_orders = ServiceOrder.in_progress
     render :index
   end
@@ -45,6 +45,8 @@ class ServiceOrdersController < ApplicationController
   end
 
   def finish 
+    return redirect_to root_path if @service_order.started.nil? || @service_order.finished?
+
     finished_so = @service_order.build_finished(delivery_date: Date.today)
   
     @service_order.finished!
