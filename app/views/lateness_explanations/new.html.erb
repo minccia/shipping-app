@@ -1,4 +1,7 @@
 <article>
+  <header>
+    <%= render 'application/errors', model: @lateness_explanation %> 
+  </header>
   <main>
     <%= form_with model: [:service_order, @lateness_explanation] do |f| %>
       <div class="form-group">
