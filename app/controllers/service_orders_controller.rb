@@ -1,5 +1,5 @@
 class ServiceOrdersController < ApplicationController
-  before_action :authenticate_user!, only: %i[index show]
+  before_action :authenticate_user!, only: %i[index show start]
   before_action :require_admin, only: %i[new create]
   before_action :fetch_service_order, only: %i[show start finish]
   before_action :fetch_transport_modality, only: %i[start]
