@@ -6,14 +6,13 @@ class LatenessExplanationsController < ApplicationController
   end
 
   def create 
-    lateness_explanation = @finished_so.build_lateness_explanation new_explanation_params
+    @lateness_explanation = @finished_so.build_lateness_explanation new_explanation_params
 
-    if lateness_explanation.save 
+    if @lateness_explanation.save 
       flash.notice = t('service_order_finished_with_success')
       return redirect_to service_order_path(params[:service_order_id])
     end
-    flash.notice = t('justification_cant_be_blank')
-    return redirect_to new_service_order_lateness_explanation_path(params[:service_order_id])
+    render :new
   end
 
   private 

@@ -8,10 +8,10 @@ class TableEntriesController < ApplicationController
 
     if @table_entry.save 
       flash.notice = t 'entry_added_to_table_with_success'
-      return redirect_to transport_modality_url(@table.transport_modality.id)
+      return redirect_to @table.transport_modality
     end
     flash.notice = t 'entry_not_added'
-    return redirect_to transport_modality_url(@table.transport_modality.id)
+    return redirect_to @table.transport_modality
   end
 
   def edit; end
@@ -19,7 +19,7 @@ class TableEntriesController < ApplicationController
   def update 
     if @table_entry.update new_table_entry_params
       flash.notice = t 'entry_updated_with_success'
-      return redirect_to transport_modality_url(@table_entry.fetch_table.transport_modality.id)
+      return redirect_to @table_entry.fetch_table.transport_modality
     end
     flash.now.notice = t 'entry_not_updated'
     render :edit, status: :unprocessable_entity

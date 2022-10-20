@@ -49,7 +49,7 @@ class VehiclesController < ApplicationController
   def update 
     if @vehicle.update new_vehicle_params
       flash.notice = t 'messages.vehicle_updated_with_success'
-      return redirect_to vehicle_url(@vehicle)
+      return redirect_to @vehicle
     end
     flash.notice = t 'messages.vehicle_not_updated'
     render :edit, status: :unprocessable_entity

@@ -39,9 +39,9 @@ class ServiceOrdersController < ApplicationController
     if started_so.save 
       @service_order.in_progress!
       @vehicle.in_operation!
-      return redirect_to service_order_url(@service_order.id), notice: t('service_order_initiated_with_success')
+      return redirect_to @service_order, notice: t('service_order_initiated_with_success')
     end
-    return redirect_to service_order_url(@service_order.id), notice: t('service_order_not_started')
+    return redirect_to @service_order, notice: t('service_order_not_started')
   end
 
   def finish 
@@ -53,7 +53,7 @@ class ServiceOrdersController < ApplicationController
     if finished_so.delivery_was_late?
       return redirect_to new_service_order_lateness_explanation_url(@service_order.id)
     end
-    return redirect_to service_order_url(@service_order.id), notice: t('service_order_finished_with_success')
+    return redirect_to @service_order, notice: t('service_order_finished_with_success')
   end
 
   def search 
