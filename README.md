@@ -28,15 +28,15 @@
     <ul>
       <li> Email: common@sistemadefrete.com.br </li>
       <li> Senha: 1234567 </li>
-    <ul>
+    </ul>
 </p>
 
 <p>
-<h3> Usuário administrador </h3>
+  <h3> Usuário administrador </h3>
     <ul>
       <li> Email: admin@sistemadefrete.com.br </li>
       <li> Senha: 1234567 </li>
-    <ul>
+    </ul>
 </p>
 
 <p>
