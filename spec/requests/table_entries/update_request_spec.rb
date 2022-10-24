@@ -2,11 +2,8 @@ require 'rails_helper'
 
 describe 'User updates table entry' do 
   it 'unless it is not authenticated as an admin' do 
-    table_entry = TableEntry.create!(
-                                     first_interval: 0,
-                                     second_interval: 1,
-                                     value: 10
-                                    )
+    trans_mod = FactoryBot.create(:transport_modality)
+    table_entry = FactoryBot.create(:table_entry, weight_price_table: trans_mod.weight_price_table)
 
     patch "/table_entries/#{table_entry.id}", params: { table_entry: { first_interval: 2 } }
 

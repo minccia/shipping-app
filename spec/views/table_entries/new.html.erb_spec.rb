@@ -114,5 +114,24 @@ describe 'table_entries/new.html.erb' do
       expect(page).to have_content 'Entrada não foi adicionada'
     end
 
+    it 'and there is already a table entry with the same range' do 
+      trans_mod = FactoryBot.create(:transport_modality)
+      FactoryBot.create(:table_entry, first_interval: 10,
+                        second_interval: 20, weight_price_table: trans_mod.weight_price_table)
+      
+      login_as admin, scope: :user
+      visit transport_modality_path(trans_mod.id)
+
+      within '#weight_price_table' do 
+        fill_in 'De', with: '10'
+        fill_in 'Até', with: '30'
+        fill_in 'Valor', with: '3.9'
+        click_on 'Adicionar'
+      end
+
+      expect(trans_mod.weight_price_table.table_entries.length).to eq 1
+      expect(page).to have_content 'Entrada não foi adicionada'
+    end
+
   end
 end
