@@ -10,9 +10,17 @@
 
 <h2> Setup da aplicação </h2>
 <p>
-  Antes de inicializar a aplicação, rode o comando <code> bin/setup </code> para instalar todas as gems e dependências necessárias para o funcionamento
-  adequado da aplicação. Em seguida, você pode subir a aplicação utilizando o comando <code> rails server </code> no seu terminal, que permitirá o acesso no endereço <code> https://localhost:3000/ </code> ou rodar todos os testes com o comando <code> rspec </code>.
-  É recomendado rodar o comando <code> rails db:seed </code> no seu terminal para popular o banco de dados com alguns models pré-cadastrados. Caso precise reiniciar o banco de dados, devido a dependência de alguns models associados, é necessário executar o comando <code> rails db:reset </code> no seu terminal. Dessa forma, você terá acesso a dois logins de usuários, um comum e um administrador, na qual o administrador possui alguns acessos a mais do que o usuário comum. Ao clicar no botão <code> Fazer Login </code> localizado na barra de navegação da página inicial, você poderá utilizar as seguintes credenciais para se autenticar:
+  Antes de inicializar a aplicação, rode o comando <code>bin/setup</code> para instalar todas as gems e dependências necessárias para o funcionamento
+  adequado da aplicação.
+</p>
+<p>
+  Em seguida, você pode subir a aplicação utilizando o comando <code>rails server</code> no seu terminal, que permitirá o acesso no endereço <code>https://localhost:3000/</code>
+</p>
+<p>
+  Caso queira rodar todos os testes, utilize o comando <code>rspec</code>
+</p>
+<p>
+  É recomendado rodar o comando <code>rails db:seed</code> no seu terminal para popular o banco de dados com alguns models pré-cadastrados. Caso precise reiniciar o banco de dados, devido a dependência de alguns models associados, é necessário executar o comando <code>rails db:reset</code> no seu terminal. Dessa forma, você terá acesso a dois logins de usuários, um comum e um administrador, na qual o administrador possui alguns acessos a mais do que o usuário comum. Ao clicar no botão <code> Fazer Login </code> localizado na barra de navegação da página inicial, você poderá utilizar as seguintes credenciais para se autenticar:
 </p>
 
 <p>
