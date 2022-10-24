@@ -7,15 +7,7 @@ class TableEntry < ApplicationRecord
   validates :first_interval, :second_interval, :value, presence: true
 
   def fetch_table
-    if self.weight_price_table.nil? && self.freight_table.nil? 
-      self.distance_price_table 
-    
-    elsif self.distance_price_table.nil? && self.freight_table.nil? 
-      self.weight_price_table 
-    
-    else  
-      self.freight_table
-    end
+    [self.weight_price_table, self.distance_price_table, self.freight_table].find(&:itself)
   end
 
   private 
@@ -27,5 +19,5 @@ class TableEntry < ApplicationRecord
         self.errors.add('Já existe uma entrada na tabela com esses intervalos')
       end
     end
-    
+
 end
