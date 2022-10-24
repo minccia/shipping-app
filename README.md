@@ -4,13 +4,15 @@
   <li> Versão do Ruby Utilizada: Ruby 3.1.2 </li>
   <li> Versão do framework Rails: 7.0.4 </li>
   <li> Ferramenta para testes: Rspec </li>
+  <li> HTTP Web Server: Puma </li>
   <li> Test driver: Capybara </li>
 </ul>
 
+<h2> Setup da aplicação </h2>
 <p>
-  Antes de inicializar a aplicação, rode o comando 'rails db:seed' no seu terminal para popular o banco de dados com alguns models pré-cadastrados, sendo essencial para ver e testar as funcionalidades do sistema. Caso precise reiniciar o banco de dados, devido
-  a dependência de alguns models associados, é necessário executar primeiro rails db:drop seguido de rails db:setup, para não enfrentar erros com foreign key constraints.
-  Você terá acesso a dois logins de usuários, um comum e um administrador, na qual o administrador possui alguns acessos a mais do que o usuário comum. Ao clicar no botão 'Fazer Login' localizado na barra de navegação da página inicial, você poderá utilizar   as credenciais para se autenticar:
+  Antes de inicializar a aplicação, rode o comando <code> bin/setup </code> para instalar todas as gems e dependências necessárias para o funcionamento
+  adequado da aplicação. Em seguida, você pode subir a aplicação utilizando o comando <code> rails server </code> no seu terminal, que permitirá o acesso no endereço <code> https://localhost:3000/ </code> ou rodar todos os testes com o comando <code> rspec </code>.
+  É recomendado rodar o comando <code> rails db:seed </code> no seu terminal para popular o banco de dados com alguns models pré-cadastrados. Caso precise reiniciar o banco de dados, devido a dependência de alguns models associados, é necessário executar o comando <code> rails db:reset </code> no seu terminal. Dessa forma, você terá acesso a dois logins de usuários, um comum e um administrador, na qual o administrador possui alguns acessos a mais do que o usuário comum. Ao clicar no botão <code> Fazer Login </code> localizado na barra de navegação da página inicial, você poderá utilizar as seguintes credenciais para se autenticar:
 </p>
 
 <p>
@@ -27,10 +29,6 @@
       <li> Senha: 1234567 </li>
     <ul>
 </p>
-
-<h2> Considerações </h2>
-  - Não consegui implementar os motivos de atraso da ordem de serviço a tempo
-  - Algumas coisas, principalmente em questão de validação, poderiam estar melhores, mas por falta de tempo tentei entregar as funcionalidades essenciais do sistema, e deixar a estética do site e pequenos detalhes para incrementar depois.
 
 <h2> Specs do sistema </h2>
   <h4> Gems utilizadas: </h4>
