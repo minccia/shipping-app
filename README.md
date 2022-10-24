@@ -20,7 +20,7 @@
   Caso queira rodar todos os testes, utilize o comando <code>rspec</code>
 </p>
 <p>
-  É recomendado rodar o comando <code>rails db:seed</code> no seu terminal para popular o banco de dados com alguns models pré-cadastrados. Caso precise reiniciar o banco de dados, devido a dependência de alguns models associados, é necessário executar o comando <code>rails db:reset</code> no seu terminal. Dessa forma, você terá acesso a dois logins de usuários, um comum e um administrador, na qual o administrador possui alguns acessos a mais do que o usuário comum. Ao clicar no botão <code> Fazer Login </code> localizado na barra de navegação da página inicial, você poderá utilizar as seguintes credenciais para se autenticar:
+  É recomendado rodar o comando <code>rails db:seed</code> no seu terminal para popular o banco de dados com alguns models pré-cadastrados. Caso precise reiniciar o banco de dados, devido a dependência de alguns models associados, é necessário executar o comando <code>rails db:reset</code> no seu terminal. Dessa forma, você terá acesso a dois logins de usuários, um comum e um administrador, na qual o administrador possui alguns acessos a mais do que o usuário comum. Ao clicar no botão <code>Fazer Login</code> localizado na barra de navegação da página inicial, você poderá utilizar as seguintes credenciais para se autenticar:
 </p>
 
 <p>
