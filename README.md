@@ -31,6 +31,7 @@
     <ul>
 </p>
 
+<p>
 <h3> Usuário administrador </h3>
     <ul>
       <li> Email: admin@sistemadefrete.com.br </li>
@@ -38,6 +39,7 @@
     <ul>
 </p>
 
+<p>
 <h2> Specs do sistema </h2>
   <h4> Gems utilizadas: </h4>
   
@@ -49,3 +51,4 @@
   
     * Devise:
        Gem utilizada para gerenciar a autenticação dos usuários comuns e admins.
+</p>
