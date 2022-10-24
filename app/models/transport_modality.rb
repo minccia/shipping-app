@@ -18,6 +18,10 @@ class TransportModality < ApplicationRecord
   def so_execution_due_date(so)
     Freight::Calculator.new(self, so).calculate_due_date
   end
+
+  def tables
+    [self.weight_price_table, self.distance_price_table, self.freight_table]
+  end 
   
   private 
     def ensure_transport_modality_has_tables

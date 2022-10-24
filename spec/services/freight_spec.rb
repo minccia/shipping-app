@@ -7,6 +7,10 @@ describe 'app/models/freight.rb' do
                                       maximum_distance: 100,
                                       maximum_weight: 25,
                                       fee: 59.9)
+                                      
+      FactoryBot.create(:table_entry, weight_price_table: trans_mod.weight_price_table)
+      FactoryBot.create(:table_entry, distance_price_table: trans_mod.distance_price_table)
+      FactoryBot.create(:table_entry, freight_table: trans_mod.freight_table)
 
       so = FactoryBot.create(:service_order, package_weight: 20, distance: 80)
 

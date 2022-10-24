@@ -6,12 +6,20 @@ module Freight
     end
 
     def can_execute_service_order?
+      return false unless table_has_entries?
       if @so.package_weight <= @transport_modality.maximum_weight
         if @so.distance <= @transport_modality.maximum_distance
           return true 
         end
       end
       return false 
+    end
+
+    def table_has_entries? 
+      @transport_modality.tables.each do |table| 
+        next if table.table_entries.any?
+        return false 
+      end
     end
   
     def calculate(entries, target)

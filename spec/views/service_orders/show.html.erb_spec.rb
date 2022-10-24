@@ -131,5 +131,23 @@ describe 'service_orders/show.html.erb' do
       expect(page).to have_content 'Iniciar ordem de serviço'
       expect(page).to have_content 'Orçamentos'
     end
+
+    it 'and there are no entries on tables' do 
+      service_order = FactoryBot.create(:service_order, distance: 80, package_weight: 20)
+      trans_mod = TransportModality.create!(name: 'Ghetto', 
+                                            maximum_distance: 100,
+                                            maximum_weight: 25,
+                                            fee: 12.9
+                                          )
+      vehicle = FactoryBot.create(:vehicle, transport_modality: trans_mod, status: :available)
+  
+      login_as user, scope: :user 
+      visit service_order_path(service_order.id)
+
+      within 'select' do 
+        expect(page).not_to have_content 'Ghetto'
+      end
+    end
   end
+  
 end
