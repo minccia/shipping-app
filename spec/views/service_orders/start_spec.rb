@@ -24,7 +24,7 @@ describe 'post service_order_start' do
     login_as user, scope: :user
     visit service_order_path(service_order.id)
 
-    expect(page).to have_content "#{trans_mod.name} - #{number_to_currency(trans_mod.so_execution_price(service_order), locale: 'pt-BR')} - #{trans_mod.so_execution_due_date(service_order).to_i}h (#{(trans_mod.so_execution_due_date(service_order)/24).to_i} Dias)"
+    expect(page).to have_content "Ghetto - R$ 72,90 - 72 Horas (3 Dias)"
     end
 end
     

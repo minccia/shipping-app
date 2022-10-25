@@ -25,4 +25,12 @@ module ApplicationHelper
     end
     attending
   end
+
+  def so_modality_selection(so, trans)
+    attending_transport_modalities(so).map do |trans| 
+      price = number_to_currency(trans.so_execution_price(so))
+      due_date = table_entry_hours_and_days(trans.so_execution_due_date(so))
+      ["#{ trans.name} - #{ price } - #{ due_date }", trans.id]
+    end
+  end
 end
