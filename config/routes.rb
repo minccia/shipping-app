@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
+
   root "home#index"
+
   resources :service_orders, only: %i[index new create show] do 
     get 'in_progress', on: :collection
     get 'search', on: :collection
@@ -10,6 +12,13 @@ Rails.application.routes.draw do
   end
   
   resources :transport_modalities, only: %i[index create show edit update]
+
+  namespace :api do 
+    namespace :v1 do 
+      resources :transport_modalities, only: %i[index show create]
+    end
+  end 
+
 
   resources :vehicles, only: %i[index new create edit update show] do 
     get 'search', on: :collection
