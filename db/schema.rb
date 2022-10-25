@@ -38,7 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_17_014833) do
     t.string "justification"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "finished_service_order_id", null: false
+    t.integer "finished_service_order_id"
     t.index ["finished_service_order_id"], name: "index_lateness_explanations_on_finished_service_order_id"
   end
 
