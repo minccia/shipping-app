@@ -5,6 +5,7 @@ class TableEntry < ApplicationRecord
 
   validate :entry_range_must_be_unique
   validates :first_interval, :second_interval, :value, presence: true
+  validates :first_interval, :second_interval, :value, numericality: { greater_than_or_equal_to: 0 }
 
   def fetch_table
     [self.weight_price_table, self.distance_price_table, self.freight_table].find(&:itself)

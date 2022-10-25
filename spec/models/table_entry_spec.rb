@@ -2,40 +2,74 @@ require 'rails_helper'
 
 RSpec.describe TableEntry, type: :model do
   describe '#valid?' do 
-    it 'false when first interval is empty' do 
-      trans_mod = FactoryBot.create(:transport_modality)
-      table_entry = TableEntry.new(
-                                   second_interval: 1, value: 5, 
-                                   weight_price_table: trans_mod.weight_price_table
-                                 )
-    
-      table_entry.save 
-
-      expect table_entry.errors.include? :first_interval
+    context 'presence' do 
+      it 'false when first interval is empty' do 
+        trans_mod = FactoryBot.create(:transport_modality)
+        table_entry = FactoryBot.build(:table_entry, first_interval: nil, 
+                                        weight_price_table: trans_mod.weight_price_table)
+      
+        table_entry.save 
+  
+        expect(table_entry.errors.first.type).to eq :blank
+        expect(table_entry.errors.include? :first_interval).to be_truthy
+      end
+  
+      it 'false when second interval is empty' do 
+        trans_mod = FactoryBot.create(:transport_modality)
+        table_entry = FactoryBot.build(:table_entry, second_interval: nil, 
+                                        weight_price_table: trans_mod.weight_price_table)
+      
+        table_entry.save 
+  
+        expect(table_entry.errors.first.type).to eq :blank
+        expect(table_entry.errors.include? :second_interval).to be_truthy
+      end
+  
+      it 'false when value is empty' do 
+        trans_mod = FactoryBot.create(:transport_modality)
+        table_entry = FactoryBot.build(:table_entry, value: nil, 
+                                        weight_price_table: trans_mod.weight_price_table)
+  
+        table_entry.save
+      
+        expect(table_entry.errors.first.type).to eq :blank
+        expect(table_entry.errors.include? :value).to be_truthy
+      end
     end
 
-    it 'false when second interval is empty' do 
-      trans_mod = FactoryBot.create(:transport_modality)
-      table_entry = TableEntry.new(
-                                   first_interval: 3, value: 10,
-                                   weight_price_table: trans_mod.weight_price_table
-                                 )
-    
-      table_entry.save 
+    context 'numericality' do 
+      it 'false when first_interval is a negative number' do 
+        trans_mod = FactoryBot.create(:transport_modality)
+        table_entry = FactoryBot.build(:table_entry, first_interval: -5, 
+                                        weight_price_table: trans_mod.weight_price_table)
+  
+        table_entry.save 
 
-      expect table_entry.errors.include? :second_interval
-    end
+        expect(table_entry.errors.first.type).to eq :greater_than_or_equal_to
+        expect(table_entry.errors.include? :first_interval).to be_truthy
+      end
 
-    it 'false when price is empty' do 
-      trans_mod = FactoryBot.create(:transport_modality)
-      table_entry = TableEntry.new(
-                                   first_interval: 3, value: 10,
-                                   weight_price_table: trans_mod.weight_price_table
-                                 )
+      it 'false when second_interval is a negative number' do 
+        trans_mod = FactoryBot.create(:transport_modality)
+        table_entry = FactoryBot.build(:table_entry, second_interval: -99, 
+                                        weight_price_table: trans_mod.weight_price_table)
+  
+        table_entry.save 
+  
+        expect(table_entry.errors.first.type).to eq :greater_than_or_equal_to
+        expect(table_entry.errors.include? :second_interval).to be_truthy
+      end
 
-      table_entry.save
-    
-      expect table_entry.errors.include? :value
+      it 'false when value is a negative number' do 
+        trans_mod = FactoryBot.create(:transport_modality)
+        table_entry = FactoryBot.build(:table_entry, value: -55, 
+                                        weight_price_table: trans_mod.weight_price_table)
+  
+        table_entry.save 
+
+        expect(table_entry.errors.first.type).to eq :greater_than_or_equal_to
+        expect(table_entry.errors.include? :value).to be_truthy
+      end
     end
 
   end
