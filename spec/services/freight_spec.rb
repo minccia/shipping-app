@@ -29,7 +29,7 @@ describe 'app/models/freight.rb' do
     end
   end
 2
-  context '#so_execution_price' do 
+  context '#total_freight_price' do 
     it 'correct when transport modality can execute service order' do 
       trans_mod = TransportModality.create!(name: 'Expresso', 
                                       maximum_distance: 100,
@@ -50,7 +50,7 @@ describe 'app/models/freight.rb' do
     end
   end    
 
-  context '#so_execution_due_date' do 
+  context '#calculate_due_date' do 
     it 'correct when transport modality can execute service order' do 
       trans_mod = TransportModality.create!(name: 'Expresso', 
                                       maximum_distance: 100,
