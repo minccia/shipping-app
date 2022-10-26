@@ -128,7 +128,6 @@ describe 'service_orders/show.html.erb' do
 
       expect(page).to have_content 'Não há veículos disponíveis na modalidade Ghetto para iniciar a ordem de serviço'
       expect(page).to have_content 'Iniciar ordem de serviço'
-      expect(page).to have_content 'Orçamentos'
     end
 
     it 'and there are no entries on tables' do 

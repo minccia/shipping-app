@@ -1,7 +1,6 @@
 <section>
   <h3> <%= t('starting_service_order') %> </h3>
   <div id='cotations'>
-    <h4> <%= t('cotations') %> </h4>
 
   <%= form_with url: start_service_order_path, method: :get do |f| %>
     <% options_array = so_modality_selection(service_order, attending_transport_modalities(service_order))%>
