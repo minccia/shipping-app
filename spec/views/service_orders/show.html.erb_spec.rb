@@ -67,10 +67,9 @@ describe 'service_orders/show.html.erb' do
       visit service_order_path(service_order.id)
 
       expect(page).to have_content 'Iniciar ordem de serviço'
-      expect(page).to have_content 'Orçamentos'
-      expect(page).to have_content 'Nome da modalidade Ghetto'
-      expect(page).to have_content 'Valor R$ 72,90'
-      expect(page).to have_content 'Prazo 72 Horas (3 Dias)'
+      expect(page).to have_content 'Ghetto'
+      expect(page).to have_content 'R$ 72,90'
+      expect(page).to have_content '72 Horas (3 Dias)'
       expect(page).to have_content 'Selecione a forma de entrega'
     end
 
