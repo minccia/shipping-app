@@ -11,4 +11,8 @@ class Api::V1::ApiController < ActionController::API
     def not_found_404
       render status: 404 
     end
+
+    def parse_json(obj)
+      obj.as_json(except: [:created_at, :updated_at])
+    end
 end
