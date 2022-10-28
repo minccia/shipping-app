@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Shipping API' do 
+describe 'Transport Modalities API' do 
   context 'GET /api/v1/transport_modalities/1' do 
     it 'success' do 
       transport_modality = TransportModality.create!(
@@ -30,18 +30,23 @@ describe 'Shipping API' do
     end
 
     it 'fail if warehouse not found' do 
+      
+      allow(TransportModality).to receive(:find).with('blablabla9999999').and_raise(ActiveRecord::RecordNotFound)
+
       get "/api/v1/transport_modalities/blablabla9999999"
 
-      expect(response.status).to eq 404
+
+      expect(response).to have_http_status 404
     end
 
     it 'and raise internal error' do 
+
       allow(TransportModality).to receive(:find).and_raise(ActiveRecord::ActiveRecordError)
       transport_modality = FactoryBot.create(:transport_modality)
 
       get "/api/v1/transport_modalities/#{transport_modality.id}"
 
-      expect(response).to have_http_status(500)
+      expect(response).to have_http_status 500
     end
 
   end
@@ -68,7 +73,7 @@ describe 'Shipping API' do
 
       get '/api/v1/transport_modalities'
 
-      expect(response.status).to eq 200 
+      expect(response).to have_http_status 200 
       expect(response.content_type).to include 'application/json'
 
       json_response = JSON.parse(response.body)
@@ -83,13 +88,12 @@ describe 'Shipping API' do
     end
 
     it 'return empty if there are no transport modalities' do 
+
       get '/api/v1/transport_modalities'
 
-      expect(response.status).to eq 200 
+      expect(response).to have_http_status 200 
       expect(response.content_type).to include 'application/json'
-
       json_response = JSON.parse(response.body)
-
       expect(json_response).to eq []
     end
 
@@ -98,7 +102,7 @@ describe 'Shipping API' do
 
       get '/api/v1/transport_modalities'
 
-      expect(response.status).to eq 500
+      expect(response).to have_http_status 500
     end
   end
 
